@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Card | Ancient Aroma</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary: #f8f3e6;
+            --secondary: #d4b996;
+            --accent: #c19a6b;
+            --light: #ffffff;
+            --dark: #5d4037;
+            --shadow: rgba(0, 0, 0, 0.05);
+            --text: #3e2723;
+            --gold: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        
+        .marquee {
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(93, 64, 55, 0.8), rgba(93, 64, 55, 0.8)), url('/placeholder.svg?height=800&width=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gold-btn {
+            background-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        .gold-btn:hover {
+            background-color: #e5c100;
+        }
+        
+        /* Card Showcase */
+        .card-showcase {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--accent);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .card-display {
+            position: relative;
+            width: 350px;
+            height: 220px;
+            margin: 0 auto 50px;
+            perspective: 1000px;
+        }
+        
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, #d4af37, #f2d272);
+            color: var(--dark);
+        }
+        
+        .card-back {
+            background: linear-gradient(135deg, #5d4037, #8b6b61);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        .card-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-logo h3 {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .card-number {
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+        }
+        
+        .card-holder {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .card-valid {
+            font-size: 0.8rem;
+        }
+        
+        .card-back .card-strip {
+            background-color: #333;
+            height: 40px;
+            margin: 20px -20px;
+        }
+        
+        .card-back .card-signature {
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 40px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-style: italic;
+        }
+        
+        .card-back .card-security {
+            font-size: 0.8rem;
+            text-align: right;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background-color: var(--primary);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+            text-align: center;
+        }
+        
+        .pricing-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            width: 300px;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        
+        .featured-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gold);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .pricing-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            color: #999;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            font-family: Georgia, serif;
+            color: rgba(193, 154, 107, 0.2);
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .testimonial-name {
+            font-weight: 600;
+        }
+        
+        .testimonial-title {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Application Form */
+        .application-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+        }
+        
+        .application-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .form-check input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .form-submit {
+            text-align: center;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+        
+        .faq-question {
+            background-color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question:after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question:after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            background-color: #f9f9f9;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.8rem;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-hours h3, .footer-social h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-hours ul {
+            list-style: none;
+        }
+        
+        .footer-hours li {
+            margin-bottom: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .pricing-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .application-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement Bar with Marquee -->
+    <div class="announcement-bar">
+        <div class="container">
+            <div class="marquee">
+                🔥 LIMITED TIME: Sign up for Premium Card today and get 3 months free! | 🎁 Premium members get exclusive access to our coffee tasting events | ⭐ Earn double points on all purchases with your Premium Card!
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Ancient Aroma Premium Card</h1>
+            <p>Elevate your coffee experience with exclusive benefits, special offers, and VIP treatment at all Ancient Aroma locations.</p>
+            <a href="#apply" class="btn gold-btn">Apply Now</a>
+            <a href="deals.html" class="btn">Back to Deals</a>
+        </div>
+    </section>
+
+    <!-- Card Showcase -->
+    <section class="card-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Premium Membership Card</h2>
+                <p>A golden ticket to exceptional coffee experiences and exclusive benefits</p>
+            </div>
+            
+            <div class="card-display">
+                <div class="card" id="card">
+                    <div class="card-front">
+                        <div class="card-logo">
+                            <div style="width: 30px; height: 30px; background-color: #5d4037; border-radius: 50%;"></div>
+                            <h3>Ancient Aroma</h3>
+                        </div>
+                        <div class="card-number">6543 •••• •••• 9876</div>
+                        <div>
+                            <div class="card-holder">Premium Member</div>
+                            <div class="card-valid">VALID THRU 04/28</div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-strip"></div>
+                        <div class="card-signature">Premium Member</div>
+                        <div class="card-security">CVC: ***</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Click the card to flip it</p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Premium Benefits</h2>
+                <p>Enjoy these exclusive perks with your Premium Card membership</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3>Exclusive Offers</h3>
+                    <p>Access special deals and discounts available only to Premium Card holders. Save up to 30% on select items.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Double Reward Points</h3>
+                    <p>Earn points twice as fast with every purchase. Redeem them for free drinks, pastries, and merchandise.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Priority Service</h3>
+                    <p>Skip the line during peak hours with our dedicated Premium service counter at all locations.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎊</div>
+                    <h3>Special Events</h3>
+                    <p>Receive invitations to exclusive coffee tastings, workshops, and seasonal events throughout the year.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎂</div>
+                    <h3>Birthday Reward</h3>
+                    <p>Enjoy a complimentary birthday drink and pastry of your choice during your birthday month.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Early Access</h3>
+                    <p>Be the first to try new menu items and seasonal specials before they're available to the public.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Membership Options</h2>
+                <p>Choose the plan that fits your coffee lifestyle</p>
+            </div>
+            
+            <div class="pricing-options">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="pricing-price">400<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Exclusive Offers</li>
+                        <li>1.5x Reward Points</li>
+                        <li>Birthday Reward</li>
+                        <li>Digital Card Only</li>
+                        <li>-</li>
+                    </ul>
+                    <a href="#apply" class="btn">Select Plan</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="featured-tag">Most Popular</div>
+                    <h3>Premium</h3>
+                    <div class="pricing-price">800<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>All Basic Benefits</li>
+                        <li>2x Reward Points</li>
+                        <li>Priority Service</li>
+                        <li>Special Events Access</li>
+                        <li>Physical & Digital Card</li>
+                    </ul>
+                    <a href="#apply" class="btn gold-btn">Select Plan</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Annual</h3>
+                    <div class="pricing-price">8000<span>/year</span></div>
+                    <ul class="pricing-features">
+                        <li>All Premium Benefits</li>
+                        <li>2 Months Free</li>
+                        <li>Free Drink Every Month</li>
+                        <li>Exclusive Merchandise</li>
+                        <li>Premium Gift Box</li>
+                    </ul>
+                    <a href="#apply" class="btn">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Members Say</h2>
+                <p>Hear from our satisfied Premium Card holders</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The Premium Card has completely transformed my coffee routine. The double points add up quickly, and I love the exclusive events where I've learned so much about coffee!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JD</div>
+                        <div>
+                            <div class="testimonial-name">ABD</div>
+                            <div class="testimonial-title">Member since 2024</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">As someone who visits Ancient Aroma daily, the Premium Card pays for itself in just a few weeks. The priority service is a lifesaver during morning rush hours!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MS</div>
+                        <div>
+                            <div class="testimonial-name"> Virat Kholi</div>
+                            <div class="testimonial-title">Member since 2025</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">I love the surprise treats and early access to seasonal drinks. The birthday reward made my day extra special. Definitely worth every penny!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AJ</div>
+                        <div>
+                            <div class="testimonial-name">Rohit Sharma </div>
+                            <div class="testimonial-title">Member since 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="apply" class="application-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apply for Your Premium Card</h2>
+                <p>Fill out the form below to start enjoying premium benefits</p>
+            </div>
+            
+            <form class="application-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plan">Select Plan</label>
+                    <select id="plan" class="form-control" required>
+                        <option value="">Choose a plan</option>
+                        <option value="basic">Basic (400.99/month)</option>
+                        <option value="premium" selected>Premium (800.99/month)</option>
+                        <option value="annual">Annual (8900.99/year)</option>
+                    </select>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the terms and conditions and privacy policy</label>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn gold-btn">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our Premium Card</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How soon will I receive my Premium Card after applying?</div>
+                    <div class="faq-answer">
+                        <p>After your application is approved, you'll receive a digital card immediately via email. If you've selected a plan that includes a physical card, it will be mailed to you within 5-7 business days.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel my membership at any time?</div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel your membership at any time. Monthly plans can be canceled before the next billing cycle. Annual plans are non-refundable but will remain active until the end of your paid term.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I redeem my Premium Card benefits?</div>
+                    <div class="faq-answer">
+                        <p>Simply present your physical card or digital card (via our mobile app) at the counter when placing your order. Our staff will apply all applicable discounts and benefits automatically.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Are there any locations where my Premium Card isn't valid?</div>
+                    <div class="faq-answer">
+                        <p>Your Premium Card is valid at all official Ancient Aroma locations. However, some airport or licensed locations may have limited benefits. Check our website for a complete list of participating locations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I upgrade my plan?</div>
+                    <div class="faq-answer">
+                        <p>You can upgrade your plan at any time through your online account or by visiting any Ancient Aroma location. When upgrading, you'll only pay the difference between your current plan and the new one.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <h2>Ancient Aroma</h2>
+                    </div>
+                    <div class="footer-contact">
+                        <p>123 Coffee Street, Brewville</p>
+                        <p>Phone: (555) 123-4567</p>
+                        <p>Email: info@ancientaroma.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-hours">
+                    <h3>Opening Hours</h3>
+                    <ul>
+                        <li>Monday - Friday: 7AM - 8PM</li>
+                        <li>Saturday: 8AM - 9PM</li>
+                        <li>Sunday: 8AM - 7PM</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">i</a>
+                        <a href="#" class="social-icon">y</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Ancient Aroma. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Card Flip Animation
+        const card = document.getElementById('card');
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission
+        const form = document.querySelector('.application-form');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your application! We will process it and contact you shortly.');
+            form.reset();
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

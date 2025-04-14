@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Aroma - Franchise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #02a8a8;
+            --primary-dark: #028383;
+            --primary-darker: #035e5e;
+            --primary-light: #01bebe;
+            --secondary: #3f3f3f;
+            --accent: #04a8a8;
+            --dark: #3f3f3f;
+            --darker: #575656;
+            --light: #f5f5f5;
+            --background: #eeeeee;
+            --white: #ffffff;
+            --gray: #cfd8dc;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0px 2px 2px 2px rgb(204, 203, 203);
+            text-align: center;
+        }
+
+        .logo h1 {
+            color: var(--dark);
+            font-family: 'Lato', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: var(--dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* Products Section */
+        .products {
+            background-color: var(--background);
+        }
+
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .product-rating {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .old-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .discount {
+            font-size: 14px;
+            color: #4CAF50;
+            margin-left: 10px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .wishlist-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 10px;
+        }
+
+        .wishlist-btn:hover {
+            color: #E91E63;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h2 {
+            font-size: 24px;
+            color: var(--primary-dark);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--primary);
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 0;
+            color: #999;
+        }
+
+        .cart-empty i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            margin-left: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .remove-item:hover {
+            color: #E91E63;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .cart-subtotal-price {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cart-total-price {
+            color: var(--primary-dark);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .continue-shopping:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Payment Modal Styles */
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s linear 0.25s, opacity 0.25s 0s;
+        }
+
+        .payment-modal.active {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            position: relative;
+            z-index: 2001;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .payment-header h2 {
+            font-size: 28px;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .close-payment {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .close-payment:hover {
+            color: var(--primary);
+        }
+
+        .payment-summary {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .payment-summary h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .summary-table th {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            color: var(--dark);
+        }
+
+        .summary-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-table .item-total {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            color: var(--primary-dark);
+        }
+
+        .payment-methods {
+            margin-bottom: 30px;
+        }
+
+        .payment-methods h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-option:hover {
+            background-color: #f9f9f9;
+        }
+
+        .payment-option.active {
+            border-color: var(--primary);
+            background-color: rgba(2, 168, 168, 0.05);
+        }
+
+        .payment-option input {
+            margin-right: 15px;
+        }
+
+        .payment-option-label {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .payment-option-icons {
+            display: flex;
+        }
+
+        .payment-option-icons i {
+            font-size: 24px;
+            margin-left: 10px;
+            color: #666;
+        }
+
+        .payment-form {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .payment-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(2, 168, 168, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .place-order-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .back-to-cart {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .back-to-cart:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Blur effect when payment modal is active */
+        .blur-background {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .payment-container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-option {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .payment-option-icons {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-content">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <h1>Ancient Aroma Cafe Merchandise</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Products Section -->
+        <section class="products" id="products">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Products</h2>
+                    <p>Discover our exclusive merchandise</p>
+                </div>
+                <div class="product-filters">
+                    <button class="filter-btn active" data-filter="all">All Products</button>
+                    <button class="filter-btn" data-filter="coffee">Coffee Beans & Chocolate</button>
+                    <button class="filter-btn" data-filter="tshirt">T-Shirts</button>
+                    <button class="filter-btn" data-filter="mugs">Mugs & Cups</button>
+                    <button class="filter-btn" data-filter="sippers">Sippers</button>
+                    <button class="filter-btn" data-filter="tote">Tote Bags</button>
+                </div>
+                <div class="product-grid">
+                    <!-- Coffee Beans Products -->
+                    <div class="product-card" data-category="coffee">
+                        <div class="product-badge">BESTSELLER</div>
+                        <div class="product-img">
+                            <img src="cbb.jpg" alt="Ethiopian Yirgacheffe">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Coffee Beans</div>
+                            <h3 class="product-title">Ethiopian Yirgacheffe</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹899</span>
+                                <span class="old-price">₹1,099</span>
+                                <span class="discount">18% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="5" data-name="Ethiopian Yirgacheffe" data-price="899" data-image="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="Coffee Beans">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- T-Shirt Products -->
+                    <div class="product-card" data-category="tshirt">
+                        <div class="product-badge">NEW</div>
+                        <div class="product-img">
+                            <img src="white.png" alt="White T-Shirt">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">T-Shirts</div>
+                            <h3 class="product-title">White Coffee Lover T-Shirt</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹599</span>
+                                <span class="old-price">₹799</span>
+                                <span class="discount">25% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="1" data-name="White Coffee Lover T-Shirt" data-price="599" data-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="T-Shirts">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="tshirt">
+                        <div class="product-img">
+                            <img src="black.png" alt="Black T-Shirt">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">T-Shirts</div>
+                            <h3 class="product-title">Black Coffee Lover T-Shirt</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹599</span>
+                                <span class="old-price">₹799</span>
+                                <span class="discount">25% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="2" data-name="Black Coffee Lover T-Shirt" data-price="599" data-image="https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="T-Shirts">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mugs Products -->
+                    <div class="product-card" data-category="mugs">
+                        <div class="product-img">
+                            <img src="mug2.jpg" alt="Ceramic Coffee Mug">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Mugs & Cups</div>
+                            <h3 class="product-title">Ceramic Coffee Mug</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹499</span>
+                                <span class="old-price">₹649</span>
+                                <span class="discount">23% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="3" data-name="Ceramic Coffee Mug" data-price="499" data-image="https://images.unsplash.com/photo-1570654621852-9dd25b76b38d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="Mugs & Cups">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sippers Products -->
+                    <div class="product-card" data-category="sippers">
+                        <div class="product-img">
+                            <img src="sip.jpg" alt="Stainless Steel Tumbler">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Sippers & Tumblers</div>
+                            <h3 class="product-title">Stainless Steel Tumbler</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹699</span>
+                                <span class="old-price">₹899</span>
+                                <span class="discount">22% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="7" data-name="Stainless Steel Tumbler" data-price="699" data-image="https://images.unsplash.com/photo-1578881089883-e3b36dfd4c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="Sippers & Tumblers">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="sippers">
+                        <div class="product-badge">NEW</div>
+                        <div class="product-img">
+                            <img src="mug.jpg" alt="Travel Coffee Mug">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Sippers & Tumblers</div>
+                            <h3 class="product-title">Travel Coffee Mug</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹599</span>
+                                <span class="old-price">₹799</span>
+                                <span class="discount">25% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="8" data-name="Travel Coffee Mug" data-price="599" data-image="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="Sippers & Tumblers">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tote Bags Products -->
+                    <div class="product-card" data-category="tote">
+                        <div class="product-badge">POPULAR</div>
+                        <div class="product-img">
+                            <img src="tote bag.png" alt="Canvas Tote Bag">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">Tote Bags</div>
+                            <h3 class="product-title">Canvas Tote Bag</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">₹399</span>
+                                <span class="old-price">₹599</span>
+                                <span class="discount">33% OFF</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart" data-id="4" data-name="Canvas Tote Bag" data-price="399" data-image="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" data-category="Tote Bags">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-bottom">
+                    <p>&copy; 2023 Ancient Aroma Cafe. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal:</span>
+                <span class="cart-subtotal-price" id="cartSubtotal">₹0.00</span>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotal">₹0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+            <a href="#" class="continue-shopping" id="continueShopping">Continue Shopping</a>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-container">
+            <div class="payment-header">
+                <h2>Checkout</h2>
+                <p>Complete your purchase</p>
+                <button class="close-payment" id="closePayment"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="payment-summary">
+                <h3>Order Summary</h3>
+                <table class="summary-table" id="summaryTable">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryTableBody">
+                        <!-- Items will be added dynamically -->
+                    </tbody>
+                </table>
+                <div class="summary-total">
+                    <span>Total Amount:</span>
+                    <span id="paymentTotal">₹0.00</span>
+                </div>
+            </div>
+            <div class="payment-methods">
+                <h3>Payment Method</h3>
+                <div class="payment-option active" data-method="card">
+                    <input type="radio" name="payment-method" id="card-payment" checked>
+                    <label for="card-payment" class="payment-option-label">Credit/Debit Card</label>
+                    <div class="payment-option-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+                <div class="payment-option" data-method="upi">
+                    <input type="radio" name="payment-method" id="upi-payment">
+                    <label for="upi-payment" class="payment-option-label">UPI Payment</label>
+                    <div class="payment-option-icons">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+                <div class="payment-option" data-method="cod">
+                    <input type="radio" name="payment-method" id="cod-payment">
+                    <label for="cod-payment" class="payment-option-label">Cash on Delivery</label>
+                    <div class="payment-option-icons">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                </div>
+                
+                <!-- Card Payment Form -->
+                <div class="payment-form active" id="card-form">
+                    <div class="form-group">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" class="form-control" placeholder="Harshit">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvv">CVV</label>
+                            <input type="text" id="card-cvv" class="form-control" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UPI Payment Form -->
+                <div class="payment-form" id="upi-form">
+                    <div class="form-group">
+                        <label for="upi-id">UPI ID</label>
+                        <input type="text" id="upi-id" class="form-control" placeholder="yourid@upi">
+                    </div>
+                </div>
+                
+                <!-- COD Form -->
+                <div class="payment-form" id="cod-form">
+                    <p>You will pay at the time of delivery. Please keep the exact amount ready.</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-address">Delivery Address</label>
+                <textarea id="delivery-address" class="form-control" rows="3" placeholder="Enter your full delivery address"></textarea>
+            </div>
+            
+            <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
+            <a href="#" class="back-to-cart" id="backToCart">Back to Cart</a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const mainContent = document.getElementById('main-content');
+            const cartSidebar = document.getElementById('cartSidebar');
+            const closeCart = document.getElementById('closeCart');
+            const continueShopping = document.getElementById('continueShopping');
+            const overlay = document.getElementById('overlay');
+            const paymentModal = document.getElementById('paymentModal');
+            const closePayment = document.getElementById('closePayment');
+            const backToCart = document.getElementById('backToCart');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const summaryTableBody = document.getElementById('summaryTableBody');
+            const paymentTotal = document.getElementById('paymentTotal');
+
+            // Cart Sidebar Toggle
+            function openCart() {
+                cartSidebar.classList.add('active');
+                overlay.classList.add('active');
+            }
+
+            function closeCartSidebar() {
+                cartSidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+
+            // Add event listeners to all add to cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openCart();
+                });
+            });
+
+            closeCart.addEventListener('click', closeCartSidebar);
+            continueShopping.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeCartSidebar();
+            });
+
+            // Payment Modal Toggle
+            function openPaymentModal() {
+                paymentModal.classList.add('active');
+                overlay.classList.add('active');
+                mainContent.classList.add('blur-background');
+                cartSidebar.classList.remove('active');
+                updatePaymentSummary();
+            }
+
+            function closePaymentModal() {
+                paymentModal.classList.remove('active');
+                overlay.classList.remove('active');
+                mainContent.classList.remove('blur-background');
+            }
+
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length > 0) {
+                    openPaymentModal();
+                } else {
+                    alert('Your cart is empty. Please add items to your cart before checkout.');
+                }
+            });
+
+            closePayment.addEventListener('click', closePaymentModal);
+            backToCart.addEventListener('click', function(e) {
+                e.preventDefault();
+                closePaymentModal();
+                openCart();
+            });
+
+            overlay.addEventListener('click', function() {
+                closeCartSidebar();
+                closePaymentModal();
+            });
+
+            // Product Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    productCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Shopping Cart Functionality
+            let cart = [];
+            const cartItems = document.getElementById('cartItems');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartTotal = document.getElementById('cartTotal');
+
+            // Add to Cart
+            const addToCartBtns = document.querySelectorAll('.add-to-cart');
+            
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    const category = this.getAttribute('data-category');
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id,
+                            name,
+                            price,
+                            image,
+                            category,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                });
+            });
+
+            // Update Cart
+            function updateCart() {
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="cart-empty">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    checkoutBtn.disabled = true;
+                    checkoutBtn.style.opacity = '0.5';
+                } else {
+                    let cartHTML = '';
+                    let subtotal = 0;
+                    
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        subtotal += itemTotal;
+                        
+                        cartHTML += `
+                            <div class="cart-item" data-id="${item.id}">
+                                <div class="cart-item-img">
+                                    <img src="${item.image}" alt="${item.name}">
+                                </div>
+                                <div class="cart-item-details">
+                                    <h3 class="cart-item-title">${item.name}</h3>
+                                    <p class="cart-item-price">₹${item.price.toFixed(2)} x ${item.quantity}</p>
+                                    <div class="cart-item-controls">
+                                        <div class="cart-quantity">
+                                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="10" data-id="${item.id}">
+                                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                                        </div>
+                                        <button class="remove-item" data-id="${item.id}">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    cartItems.innerHTML = cartHTML;
+                    
+                    cartSubtotal.textContent = `₹${subtotal.toFixed(2)}`;
+                    cartTotal.textContent = `₹${subtotal.toFixed(2)}`;
+                    
+                    checkoutBtn.disabled = false;
+                    checkoutBtn.style.opacity = '1';
+                    
+                    // Add event listeners to quantity buttons
+                    const decreaseBtns = document.querySelectorAll('.decrease');
+                    const increaseBtns = document.querySelectorAll('.increase');
+                    const quantityInputs = document.querySelectorAll('.quantity-input');
+                    const removeItemBtns = document.querySelectorAll('.remove-item');
+                    
+                    decreaseBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            const item = cart.find(item => item.id === id);
+                            
+                            if (item.quantity > 1) {
+                                item.quantity -= 1;
+                                updateCart();
+                            }
+                        });
+                    });
+                    
+                    increaseBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            const item = cart.find(item => item.id === id);
+                            
+                            if (item.quantity < 10) {
+                                item.quantity += 1;
+                                updateCart();
+                            }
+                        });
+                    });
+                    
+                    quantityInputs.forEach(input => {
+                        input.addEventListener('change', function() {
+                            const id = this.getAttribute('data-id');
+                            const item = cart.find(item => item.id === id);
+                            const value = parseInt(this.value);
+                            
+                            if (value >= 1 && value <= 10) {
+                                item.quantity = value;
+                            } else if (value < 1) {
+                                item.quantity = 1;
+                            } else {
+                                item.quantity = 10;
+                            }
+                            
+                            updateCart();
+                        });
+                    });
+                    
+                    removeItemBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            cart = cart.filter(item => item.id !== id);
+                            updateCart();
+                        });
+                    });
+                }
+            }
+
+            // Update Payment Summary
+            function updatePaymentSummary() {
+                let summaryHTML = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    summaryHTML += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>${item.quantity}</td>
+                            <td>₹${item.price.toFixed(2)}</td>
+                            <td class="item-total">₹${itemTotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+                
+                summaryTableBody.innerHTML = summaryHTML;
+                paymentTotal.textContent = `₹${total.toFixed(2)}`;
+            }
+
+            // Payment Method Selection
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            const paymentForms = document.querySelectorAll('.payment-form');
+            
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Update radio button
+                    this.querySelector('input[type="radio"]').checked = true;
+                    
+                    // Update active class
+                    paymentOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding form
+                    const method = this.getAttribute('data-method');
+                    paymentForms.forEach(form => form.classList.remove('active'));
+                    document.getElementById(`${method}-form`).classList.add('active');
+                });
+            });
+
+            // Place Order
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            
+            placeOrderBtn.addEventListener('click', function() {
+                const deliveryAddress = document.getElementById('delivery-address').value;
+                
+                if (!deliveryAddress.trim()) {
+                    alert('Please enter your delivery address.');
+                    return;
+                }
+                
+                // Get selected payment method
+                const selectedMethod = document.querySelector('.payment-option.active').getAttribute('data-method');
+                
+                // Validate payment details based on method
+                if (selectedMethod === 'card') {
+                    const cardName = document.getElementById('card-name').value;
+                    const cardNumber = document.getElementById('card-number').value;
+                    const cardExpiry = document.getElementById('card-expiry').value;
+                    const cardCvv = document.getElementById('card-cvv').value;
+                    
+                    if (!cardName.trim() || !cardNumber.trim() || !cardExpiry.trim() || !cardCvv.trim()) {
+                        alert('Please fill in all card details.');
+                        return;
+                    }
+                } else if (selectedMethod === 'upi') {
+                    const upiId = document.getElementById('upi-id').value;
+                    
+                    if (!upiId.trim()) {
+                        alert('Please enter your UPI ID.');
+                        return;
+                    }
+                }
+                
+                // Process order
+                alert('Thank you for your order! Your payment has been processed successfully.');
+                
+                // Reset cart and UI
+                cart = [];
+                updateCart();
+                closePaymentModal();
+            });
+
+            // Wishlist functionality
+            const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+            
+            wishlistBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        icon.style.color = '#E91E63';
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        icon.style.color = '#999';
+                    }
+                });
+            });
+
+            // Initialize cart
+            updateCart();
+        });
+    </script>
+</body>
+
+</html>

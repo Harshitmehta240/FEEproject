@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deals & Offers | Ancient Aroma</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap">
+<style>
+:root {
+  --primary: #f8f3e6;
+  --secondary: #d4b996;
+  --accent: #c19a6b;
+  --light: #ffffff;
+  --dark: #5d4037;
+  --shadow: rgba(0, 0, 0, 0.05);
+  --text: #3e2723;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header with Logo Only */
+header {
+  background-color: var(--light);
+  box-shadow: 0 2px 10px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 15px 0;
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+  animation: rotateIn 1s ease;
+}
+
+@keyframes rotateIn {
+  from { transform: rotate(-180deg); opacity: 0; }
+  to { transform: rotate(0); opacity: 1; }
+}
+
+.logo h1 {
+  color: var(--dark);
+  font-size: 1.8rem;
+  animation: fadeInRight 0.8s ease;
+}
+
+@keyframes fadeInRight {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Announcement Bar */
+.announcement-bar {
+  background-color: var(--accent);
+  color: white;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(93, 64, 55, 0.7), rgba(93, 64, 55, 0.7)), url('/placeholder.svg?height=800&width=1200');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.coffee-beans {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.bean {
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards 0.4s;
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.btn:hover::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.btn:hover {
+  background-color: var(--secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero .btn {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+
+/* Deals Tabs */
+.deals-section {
+  padding: 80px 0;
+  background-color: var(--primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.section-title.animate {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.section-title p {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.tabs.animate {
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.tab-btn {
+  background-color: var(--light);
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 30px;
+  margin: 0 10px;
+  box-shadow: 0 3px 10px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.tab-btn:hover::before {
+  left: 100%;
+}
+
+.tab-btn.active {
+  background-color: var(--accent);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Deals Cards */
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.deal-card {
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px var(--shadow);
+  transition: transform 0.5s, box-shadow 0.5s;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.deal-card.animate {
+  animation: cardAppear 0.8s ease forwards;
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.deal-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px var(--shadow);
+}
+
+.deal-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.deal-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.deal-card:hover .deal-image::before {
+  opacity: 1;
+}
+
+.deal-badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 80px;
+  height: 80px;
+  background-color: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transform: rotate(15deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: transform 0.3s;
+}
+
+.deal-card:hover .deal-badge {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.deal-content {
+  padding: 20px;
+}
+
+.deal-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--dark);
+  transition: color 0.3s;
+}
+
+.deal-card:hover .deal-title {
+  color: var(--accent);
+}
+
+.deal-description {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.deal-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 10px;
+}
+
+.current-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.deal-tag {
+  display: inline-block;
+  background-color: var(--secondary);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  transform: translateY(0);
+  transition: transform 0.3s;
+}
+
+.deal-card:hover .deal-tag {
+  transform: translateY(-3px);
+}
+
+.premium-tag {
+  background-color: #c19a6b;
+}
+
+.ribbon {
+  position: absolute;
+  top: 20px;
+  left: -15px;
+  padding: 8px 20px;
+  background-color: var(--accent);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.ribbon:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  border-left: 15px solid transparent;
+  border-top: 15px solid #a67c52;
+}
+
+/* Premium Card Info */
+.premium-info {
+  background-color: var(--dark);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-info:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/placeholder.svg?height=400&width=400') repeat;
+  opacity: 0.05;
+}
+
+.premium-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.premium-info h2.animate {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.premium-info p {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.premium-info p.animate {
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.premium-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.benefit {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px 20px;
+  border-radius: 15px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.5s, background-color 0.5s;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+}
+
+.benefit.animate {
+  animation: benefitAppear 0.8s ease forwards;
+}
+
+@keyframes benefitAppear {
+  from { opacity: 0; transform: translateY(30px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.benefit:hover {
+  transform: translateY(-10px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
+
+.benefit:hover .benefit-icon {
+  transform: scale(1.2);
+}
+
+.benefit h3 {
+  margin-bottom: 10px;
+}
+
+.premium-info .btn {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.premium-info .btn.animate {
+  animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+
+/* Fun Stickers */
+.sticker {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 2;
+  opacity: 0;
+}
+
+.sticker-1 {
+  top: 10%;
+  left: 5%;
+  transform: rotate(-15deg);
+  background-image: url('/placeholder.svg?height=100&width=100');
+  animation: stickerAppear 0.8s ease forwards 1s, float-sticker 5s ease-in-out infinite;
+}
+
+.sticker-2 {
+  bottom: 15%;
+  right: 8%;
+  transform: rotate(10deg);
+  background-image: url('/placeholder.svg?height=100&width=100');
+  animation: stickerAppear 0.8s ease forwards 1.2s, float-sticker 5s ease-in-out infinite 0.5s;
+}
+
+@keyframes stickerAppear {
+  from { opacity: 0; transform: scale(0) rotate(-30deg); }
+  to { opacity: 1; transform: scale(1) rotate(10deg); }
+}
+
+@keyframes float-sticker {
+  0% { transform: translateY(0) rotate(10deg); }
+  50% { transform: translateY(-15px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(10deg); }
+}
+
+/* Decorative Elements */
+.coffee-cup {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-image: url('/placeholder.svg?height=60&width=60');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  opacity: 0;
+}
+
+.coffee-cup-1 {
+  top: 10%;
+  left: 10%;
+  animation: cupAppear 0.8s ease forwards 1.4s, float-cup 8s ease-in-out infinite;
+}
+
+.coffee-cup-2 {
+  bottom: 15%;
+  right: 10%;
+  animation: cupAppear 0.8s ease forwards 1.6s, float-cup 8s ease-in-out infinite 0.5s;
+}
+
+.coffee-cup-3 {
+  top: 40%;
+  right: 15%;
+  animation: cupAppear 0.8s ease forwards 1.8s, float-cup 8s ease-in-out infinite 1s;
+}
+
+@keyframes cupAppear {
+  from { opacity: 0; transform: scale(0) rotate(-30deg); }
+  to { opacity: 0.2; transform: scale(1) rotate(10deg); }
+}
+
+@keyframes float-cup {
+  0% { transform: translateY(0) rotate(10deg); }
+  50% { transform: translateY(-20px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(10deg); }
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary);
+  color: var(--dark);
+  padding: 60px 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.footer-content.animate {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.footer-logo h2 {
+  font-size: 1.8rem;
+}
+
+.footer-contact p {
+  margin-bottom: 10px;
+}
+
+.footer-links h3, .footer-hours h3, .footer-social h3 {
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.footer-links ul, .footer-hours ul {
+  list-style: none;
+}
+
+.footer-links li, .footer-hours li {
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+
+.footer-links li:hover, .footer-hours li:hover {
+  transform: translateX(5px);
+}
+
+.footer-links a {
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.social-icon:hover {
+  background-color: var(--dark);
+  transform: translateY(-5px);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(93, 64, 55, 0.1);
+  font-size: 0.9rem;
+  color: var(--dark);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.copyright.animate {
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+/* Fun Animations */
+.shake {
+  animation: shake 0.5s ease infinite;
+  animation-play-state: paused;
+}
+
+.shake:hover {
+  animation-play-state: running;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Animated Background Elements */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.bg-circle-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+  animation: pulse-bg 15s infinite alternate;
+}
+
+.bg-circle-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -250px;
+  right: -250px;
+  animation: pulse-bg 15s infinite alternate-reverse;
+}
+
+@keyframes pulse-bg {
+  0% { transform: scale(1); opacity: 0.05; }
+  50% { transform: scale(1.2); opacity: 0.08; }
+  100% { transform: scale(1); opacity: 0.05; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tab-btn {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+  
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .section-title h2 {
+    font-size: 2rem;
+  }
+  
+  .premium-benefits {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .benefit {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .sticker {
+    width: 70px;
+    height: 70px;
+  }
+
+  .coffee-cup {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Scroll Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animated Cursor Effect */
+.cursor-effect {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  opacity: 0.5;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+}
+</style>
+</head>
+<body>
+<!-- Cursor Effect -->
+<div class="cursor-effect" id="cursor"></div>
+
+<!-- Header with Logo Only -->
+<header>
+  <div class="container">
+    <div class="logo">
+      <img src="LOGO ANCIENT AROMA.jpg" alt="Ancient Aroma Logo">
+      <h1>Ancient Aroma</h1>
+    </div>
+  </div>
+</header>
+
+<!-- Announcement Bar with Marquee -->
+<div class="announcement-bar">
+  <div class="container">
+    <div class="marquee">
+      🔥 HOT DEAL: Buy one get one free on all specialty coffees this weekend! | 🎁 New seasonal menu items available now! | ⭐ Join our loyalty program and get a free coffee on signup! | 🎉 Happy Hour: 3-5PM daily with 30% off all pastries!
+    </div>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="coffee-beans" id="coffee-beans"></div>
+  <div class="container hero-content">
+    <h2>Exclusive Deals & Offers</h2>
+    <p>Discover amazing deals on your favorite coffee, pastries, and more. Premium cardholders get access to even more exclusive offers!</p>
+    <a href="#deals" class="btn pulse">View Deals</a>
+  </div>
+  <div class="sticker sticker-1"></div>
+  <div class="sticker sticker-2"></div>
+  <div class="coffee-cup coffee-cup-1"></div>
+  <div class="coffee-cup coffee-cup-2"></div>
+  <div class="coffee-cup coffee-cup-3"></div>
+</section>
+
+<!-- Deals Section -->
+<section id="deals" class="deals-section">
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>Our Special Offers</h2>
+      <p>Handcrafted with love, priced with care</p>
+    </div>
+
+    <div class="tabs reveal">
+      <button class="tab-btn active" data-tab="regular">Regular Deals</button>
+      <button class="tab-btn" data-tab="premium">Premium Card Deals</button>
+    </div>
+
+   <!-- Regular Deals -->
+<div id="regular-deals" class="tab-content active">
+    <div class="deals-grid">
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('cappuccino.jpeg')">
+          <div class="ribbon">HOT DEAL!</div>
+        </div>
+        <div class="deal-badge shake">20% OFF</div>
+        <div class="deal-content">
+          <span class="deal-tag">Limited Time</span>
+          <h3 class="deal-title">Morning Brew Bundle</h3>
+          <p class="deal-description">Any medium coffee with a freshly baked pastry of your choice.</p>
+          <div class="deal-price">
+            <span class="original-price">₹746</span>
+            <span class="current-price">₹580</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('ll.jpg')"></div>
+        <div class="deal-content">
+          <span class="deal-tag">Weekday Special</span>
+          <h3 class="deal-title">Lunch Combo</h3>
+          <p class="deal-description">Any sandwich with a medium coffee or tea of your choice.</p>
+          <div class="deal-price">
+            <span class="original-price">₹1,078</span>
+            <span class="current-price">₹829</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('11.jpg')"></div>
+        <div class="deal-badge shake">50% OFF</div>
+        <div class="deal-content">
+          <span class="deal-tag">Happy Hour</span>
+          <h3 class="deal-title">2PM - 4PM Special</h3>
+          <p class="deal-description">Buy one specialty coffee, get the second one at half price.</p>
+          <div class="deal-price">
+            <span class="original-price">Varies</span>
+            <span class="current-price">50% Off</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('fb.jpg')">
+          <div class="ribbon">WEEKEND ONLY!</div>
+        </div>
+        <div class="deal-content">
+          <span class="deal-tag">Weekend Special</span>
+          <h3 class="deal-title">Family Brunch Pack</h3>
+          <p class="deal-description">4 coffees and 4 pastries of your choice at a special price.</p>
+          <div class="deal-price">
+            <span class="original-price">₹2,738</span>
+            <span class="current-price">₹2,074</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('apple pie.jpeg')"></div>
+        <div class="deal-badge shake">15% OFF</div>
+        <div class="deal-content">
+          <span class="deal-tag">Student Offer</span>
+          <h3 class="deal-title">Study Buddy</h3>
+          <p class="deal-description">Show your student ID and get 15% off any order.</p>
+          <div class="deal-price">
+            <span class="original-price">Regular Price</span>
+            <span class="current-price">15% Off</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('hazelnut latte.jpeg')">
+          <div class="ribbon">NEW!</div>
+        </div>
+        <div class="deal-content">
+          <span class="deal-tag">New Item</span>
+          <h3 class="deal-title">Seasonal Latte</h3>
+          <p class="deal-description">Try our new seasonal latte at an introductory price.</p>
+          <div class="deal-price">
+            <span class="original-price">₹497</span>
+            <span class="current-price">₹373</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  <!-- Premium Deals -->
+  <div id="premium-deals" class="tab-content">
+    <div class="deals-grid">
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('citrus cold brew.jpeg')">
+          <div class="ribbon">PREMIUM ONLY!</div>
+        </div>
+        <div class="deal-badge shake">30% OFF</div>
+        <div class="deal-content">
+          <span class="deal-tag premium-tag">Premium Exclusive</span>
+          <h3 class="deal-title">Gourmet Coffee Flight</h3>
+          <p class="deal-description">Sample four of our premium single-origin coffees with expert guidance.</p>
+          <div class="deal-price">
+            <span class="original-price">₹1,576</span>
+            <span class="current-price">₹1,078</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('2c.jpg')"></div>
+        <div class="deal-content">
+          <span class="deal-tag premium-tag">Premium Exclusive</span>
+          <h3 class="deal-title">Unlimited Coffee Day</h3>
+          <p class="deal-description">Enjoy unlimited refills of our house blend coffee for the entire day.</p>
+          <div class="deal-price">
+            <span class="original-price">₹1,327</span>
+            <span class="current-price">₹829</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('pb.jpg')"></div>
+        <div class="deal-badge shake">25% OFF</div>
+        <div class="deal-content">
+          <span class="deal-tag premium-tag">Premium Exclusive</span>
+          <h3 class="deal-title">Artisan Pastry Box</h3>
+          <p class="deal-description">A curated box of 6 premium pastries from our master baker.</p>
+          <div class="deal-price">
+            <span class="original-price">₹2,074</span>
+            <span class="current-price">₹1,577</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('cd.jpg')">
+          <div class="ribbon">PREMIUM ONLY!</div>
+        </div>
+        <div class="deal-content">
+          <span class="deal-tag premium-tag">Premium Exclusive</span>
+          <h3 class="deal-title">Coffee & Dessert Pairing</h3>
+          <p class="deal-description">Expert-paired specialty coffee with a gourmet dessert.</p>
+          <div class="deal-price">
+            <span class="original-price">₹1,244</span>
+            <span class="current-price">₹912</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('ac.jpg')"></div>
+        <div class="deal-badge shake">20% OFF</div>
+        <div class="deal-content">
+          <span class="deal-tag premium-tag">Premium Exclusive</span>
+          <h3 class="deal-title">Early Access Menu</h3>
+          <p class="deal-description">Try our new menu items a week before they're available to the public.</p>
+          <div class="deal-price">
+            <span class="original-price">Varies</span>
+            <span class="current-price">20% Off</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+      <div class="deal-card reveal">
+        <div class="deal-image" style="background-image: url('ptt.jpg')">
+          <div class="ribbon">FREE EVENT!</div>
+        </div>
+        <div class="deal-content">
+          <span class="deal-tag premium-tag">Premium Exclusive</span>
+          <h3 class="deal-title">Private Tasting Event</h3>
+          <p class="deal-description">Monthly coffee tasting events exclusively for premium cardholders.</p>
+          <div class="deal-price">
+            <span class="original-price">₹2,489</span>
+            <span class="current-price">Free</span>
+          </div>
+          <a href="#" class="btn">Claim Offer</a>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</section>
+
+<!-- Premium Card Info -->
+<section class="premium-info">
+  <div class="container">
+    <h2 class="reveal">Upgrade to Premium Card</h2>
+    <p class="reveal">Join our premium membership program and unlock exclusive deals, special events, and more benefits that enhance your Ancient Aroma experience.</p>
+
+    <div class="premium-benefits">
+      <div class="benefit reveal">
+        <div class="benefit-icon">🎁</div>
+        <h3>Exclusive Offers</h3>
+        <p>Access to premium-only deals and discounts</p>
+      </div>
+
+      <div class="benefit reveal">
+        <div class="benefit-icon">🏆</div>
+        <h3>Double Points</h3>
+        <p>Earn rewards twice as fast with every purchase</p>
+      </div>
+
+      <div class="benefit reveal">
+        <div class="benefit-icon">🎯</div>
+        <h3>Priority Service</h3>
+        <p>Skip the line during peak hours</p>
+      </div>
+
+      <div class="benefit reveal">
+        <div class="benefit-icon">🎊</div>
+        <h3>Special Events</h3>
+        <p>Invitations to tastings and exclusive events</p>
+      </div>
+    </div>
+
+    <a href="premium.html" class="btn pulse reveal">Get Your Premium Card</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content reveal">
+      <div class="footer-info">
+        <div class="footer-logo">
+          <h2>Ancient Aroma</h2>
+        </div>
+        <div class="footer-contact">
+          <p>123 Coffee Street, Brewville</p>
+          <p>Phone: (555) 123-4567</p>
+          <p>Email: info@ancientaroma.com</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Deals & Offers</a></li>
+          <li><a href="premium.html">Premium Card</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-hours">
+        <h3>Opening Hours</h3>
+        <ul>
+          <li>Monday - Friday: 7AM - 8PM</li>
+          <li>Saturday: 8AM - 9PM</li>
+          <li>Sunday: 8AM - 7PM</li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon">f</a>
+          <a href="#" class="social-icon">t</a>
+          <a href="#" class="social-icon">i</a>
+          <a href="#" class="social-icon">y</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright reveal">
+      <p>&copy; 2025 Ancient Aroma. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Tabs Functionality
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active class from all buttons and contents
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    // Add active class to clicked button and corresponding content
+    btn.classList.add('active');
+    const tabId = btn.getAttribute('data-tab');
+    document.getElementById(`${tabId}-deals`).classList.add('active');
+    
+    // Animate cards when tab changes
+    animateCards();
+  });
+});
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Scroll Reveal Animation
+function revealOnScroll() {
+  const reveals = document.querySelectorAll('.reveal');
+  
+  for (let i = 0; i < reveals.length; i++) {
+    const windowHeight = window.innerHeight;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const elementVisible = 150;
+    
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add('active');
+    }
+  }
+}
+
+// Animate cards with staggered delay
+function animateCards() {
+  const activeTab = document.querySelector('.tab-content.active');
+  const cards = activeTab.querySelectorAll('.deal-card');
+  
+  cards.forEach((card, index) => {
+    card.classList.remove('animate');
+    setTimeout(() => {
+      card.classList.add('animate');
+      card.style.animationDelay = `${index * 0.1}s`;
+    }, 50);
+  });
+}
+
+// Create floating coffee beans in hero section
+const createCoffeeBeans = () => {
+  const beanContainer = document.getElementById('coffee-beans');
+  const numberOfBeans = 20;
+
+  for (let i = 0; i < numberOfBeans; i++) {
+    const bean = document.createElement('div');
+    bean.classList.add('bean');
+
+    // Random positioning
+    bean.style.left = `${Math.random() * 100}%`;
+    bean.style.top = `${Math.random() * 100}%`;
+
+    // Random size
+    const size = 10 + Math.random() * 20;
+    bean.style.width = `${size}px`;
+    bean.style.height = `${size * 1.5}px`;
+
+    // Random rotation
+    bean.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    // Random animation delay
+    bean.style.animationDelay = `${Math.random() * 15}s`;
+    bean.style.animationDuration = `${15 + Math.random() * 15}s`;
+
+    beanContainer.appendChild(bean);
+  }
+};
+
+// Animate section titles and tabs
+function animateSections() {
+  document.querySelector('.section-title').classList.add('animate');
+  document.querySelector('.tabs').classList.add('animate');
+  
+  // Animate premium section
+  const premiumElements = document.querySelectorAll('.premium-info h2, .premium-info p, .premium-info .btn');
+  premiumElements.forEach(el => el.classList.add('animate'));
+  
+  // Animate benefits with delay
+  const benefits = document.querySelectorAll('.benefit');
+  benefits.forEach((benefit, index) => {
+    setTimeout(() => {
+      benefit.classList.add('animate');
+    }, 200 * index);
+  });
+  
+  // Animate footer
+  document.querySelector('.footer-content').classList.add('animate');
+  document.querySelector('.copyright').classList.add('animate');
+}
+
+// Custom cursor effect
+function updateCursor(e) {
+  const cursor = document.getElementById('cursor');
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
+  
+  // Check if hovering over interactive elements
+  const isHovering = e.target.closest('a, button, .deal-card, .benefit');
+  if (isHovering) {
+    cursor.style.width = '40px';
+    cursor.style.height = '40px';
+    cursor.style.opacity = '0.3';
+  } else {
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+    cursor.style.opacity = '0.5';
+  }
+}
+
+// Parallax effect on scroll
+function parallaxScroll() {
+  const scrollPosition = window.pageYOffset;
+  
+  // Parallax for hero section
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.style.backgroundPosition = `center ${scrollPosition * 0.4}px`;
+  }
+  
+  // Parallax for stickers
+  const stickers = document.querySelectorAll('.sticker');
+  stickers.forEach(sticker => {
+    const speed = 0.2;
+    sticker.style.transform = `translateY(${scrollPosition * speed}px) rotate(10deg)`;
+  });
+}
+
+// Initialize
+window.addEventListener('DOMContentLoaded', () => {
+  createCoffeeBeans();
+  setTimeout(animateSections, 500);
+  animateCards();
+  
+  // Initial reveal check
+  revealOnScroll();
+});
+
+// Event listeners
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('scroll', parallaxScroll);
+document.addEventListener('mousemove', updateCursor);
+window.addEventListener('resize', revealOnScroll);
+
+// Add entrance animations to deal cards
+const dealCards = document.querySelectorAll('.deal-card');
+dealCards.forEach((card, index) => {
+  card.style.animationDelay = `${index * 0.1}s`;
+});
+</script>
+</body>
+</html>

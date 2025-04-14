@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ancient Aroma – Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: url('https://img.freepik.com/free-vector/modern-coffee-shop-interior-with-flat-design_23-2147903651.jpg?t=st=1744573428~exp=1744577028~hmac=e9c94d37b052ce3d7d75553fadd350a75e0210263dc9958b3a05ef1615fa6927&w=826');
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      filter: blur(8px);
+      z-index: -2;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    .container {
+      width: 420px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, #c47a4f, #4e2c1c);
+    }
+
+    .form-content {
+      padding: 30px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: #c47a4f;
+    }
+
+    .logo h1 {
+      color: #4e2c1c;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+
+    .logo p {
+      color: #c47a4f;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      background: #f9f9f9;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #777;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .tab.active {
+      color: #fff;
+      background: #c47a4f;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #4e2c1c;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: #f9f9f9;
+    }
+
+    .form-group input:focus {
+      border-color: #c47a4f;
+      outline: none;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(196, 122, 79, 0.1);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #c47a4f, #a05a35);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #a05a35, #4e2c1c);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:hover::after {
+      left: 100%;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 25px;
+      color: #777;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .form-footer::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #eee;
+    }
+
+    .form-footer a {
+      color: #c47a4f;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .form-footer a:hover {
+      color: #4e2c1c;
+    }
+
+    .signup-form {
+      display: none;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+      padding-left: 5px;
+    }
+
+    .coffee-icon {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .coffee-icon svg {
+      width: 40px;
+      height: 40px;
+      fill: #c47a4f;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 90%;
+      }
+      
+      .form-content {
+        padding: 20px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-form, .signup-form {
+      animation: fadeIn 0.5s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="coffee-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M2,21V19H20V21H2M20,8V5H18V8H20M20,3A2,2 0 0,1 22,5V8A2,2 0 0,1 20,10H18V13A4,4 0 0,1 14,17H8A4,4 0 0,1 4,13V3H20M16,5H6V13A2,2 0 0,0 8,15H14A2,2 0 0,0 16,13V5Z" />
+      </svg>
+    </div>
+    <div class="form-content">
+      <div class="logo">
+        <h1>Ancient Aroma</h1>
+        <p>Streamline your café operations</p>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" id="login-tab">Sign In</div>
+        <div class="tab" id="signup-tab">Sign Up</div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="Enter your email" required>
+          <div class="error-message" id="login-email-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+          <div class="error-message" id="login-password-error"></div>
+        </div>
+
+        <button type="submit" class="btn">Sign In</button>
+
+        <div class="form-footer">
+          <p>Forgot your password? <a href="#">Reset it</a></p>
+        </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="signup-form">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" placeholder="Enter your full name" required>
+          <div class="error-message" id="signup-name-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" placeholder="Enter your email" required>
+          <div class="error-message" id="signup-email-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Create a password" required>
+          <div class="error-message" id="signup-password-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm">Confirm Password</label>
+          <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+          <div class="error-message" id="signup-confirm-error"></div>
+        </div>
+
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const users = [
+      { email: 'admin@ancientaroma.com', password: 'admin123', name: 'Admin User' },
+      { email: 'staff@ancientaroma.com', password: 'staff123', name: 'Staff User' }
+    ];
+
+    const loginTab = document.getElementById('login-tab');
+    const signupTab = document.getElementById('signup-tab');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const loginEmail = document.getElementById('login-email');
+    const loginPassword = document.getElementById('login-password');
+    const signupEmail = document.getElementById('signup-email');
+
+    // Tab switching with animation
+    loginTab.addEventListener('click', () => {
+      loginTab.classList.add('active');
+      signupTab.classList.remove('active');
+      signupForm.style.display = 'none';
+      setTimeout(() => {
+        loginForm.style.display = 'block';
+      }, 50);
+    });
+
+    signupTab.addEventListener('click', () => {
+      signupTab.classList.add('active');
+      loginTab.classList.remove('active');
+      loginForm.style.display = 'none';
+      setTimeout(() => {
+        signupForm.style.display = 'block';
+      }, 50);
+    });
+
+    // Email recognition
+    loginEmail.addEventListener('blur', () => {
+      const email = loginEmail.value.trim();
+      const user = users.find(u => u.email === email);
+      if (user) {
+        document.getElementById('login-email-error').style.display = 'none';
+        loginPassword.focus();
+      } else if (email) {
+        document.getElementById('login-email-error').textContent = 'Email not found. Please sign up.';
+        document.getElementById('login-email-error').style.display = 'block';
+      }
+    });
+
+    // Login form submission
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = loginEmail.value.trim();
+      const password = loginPassword.value.trim();
+      const user = users.find(u => u.email === email);
+      
+      if (user && user.password === password) {
+        // Add success animation
+        const btn = e.target.querySelector('.btn');
+        btn.textContent = 'Success!';
+        btn.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+        
+        setTimeout(() => {
+          alert('Login successful! Redirecting...');
+          window.location.href = 'final.html'; // or your homepage
+        }, 800);
+      } else {
+        document.getElementById('login-password-error').textContent = 'Invalid password. Please try again.';
+        document.getElementById('login-password-error').style.display = 'block';
+        
+        // Add shake animation to password field
+        const passwordField = document.getElementById('login-password');
+        passwordField.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          passwordField.style.animation = '';
+        }, 500);
+      }
+    });
+
+    // Email check during signup
+    signupEmail.addEventListener('blur', () => {
+      const email = signupEmail.value.trim();
+      const user = users.find(u => u.email === email);
+      if (user) {
+        document.getElementById('signup-email-error').textContent = 'Email already exists. Please sign in.';
+        document.getElementById('signup-email-error').style.display = 'block';
+        loginTab.click();
+        loginEmail.value = email;
+        loginPassword.focus();
+      } else {
+        document.getElementById('signup-email-error').style.display = 'none';
+      }
+    });
+
+    // Signup form submission
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value.trim();
+      const email = signupEmail.value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+      const confirm = document.getElementById('signup-confirm').value.trim();
+
+      if (password !== confirm) {
+        document.getElementById('signup-confirm-error').textContent = 'Passwords do not match';
+        document.getElementById('signup-confirm-error').style.display = 'block';
+        return;
+      }
+
+      if (users.some(u => u.email === email)) {
+        document.getElementById('signup-email-error').textContent = 'Email already exists. Please sign in.';
+        document.getElementById('signup-email-error').style.display = 'block';
+        return;
+      }
+
+      users.push({ email, password, name });
+      
+      // Add success animation
+      const btn = e.target.querySelector('.btn');
+      btn.textContent = 'Account Created!';
+      btn.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+      
+      setTimeout(() => {
+        alert('Account created successfully! Please sign in.');
+        loginTab.click();
+        loginEmail.value = email;
+        loginPassword.focus();
+      }, 800);
+    });
+
+    // Add shake animation
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+      </style>
+    `);
+  </script>
+</body>
+</html>

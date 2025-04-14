@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Ancient Aroma Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #c47a4f;
+      --primary-dark: #4e2c1c;
+      --secondary: #e6d2c0;
+      --light: #f9f5f1;
+      --dark: #2d2013;
+      --success: #4CAF50;
+      --warning: #FFC107;
+      --danger: #F44336;
+      --gray: #6c757d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .hero {
+      height: 50vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background-color: var(--primary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Header */
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    /* Map Section */
+    .map-section {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .map-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .map {
+      flex: 1;
+      min-width: 300px;
+      height: 400px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .map-status {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .open {
+      background-color: var(--success);
+    }
+
+    .closed {
+      background-color: var(--danger);
+    }
+
+    .busy {
+      background-color: var(--warning);
+    }
+
+    .map-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .map-info h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    .cafe-hours {
+      margin-bottom: 20px;
+    }
+
+    .cafe-hours h4 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .hours-list {
+      list-style: none;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed #eee;
+    }
+
+    .hours-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Location Cards */
+    .locations-section {
+      margin-bottom: 40px;
+    }
+
+    .location-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .location-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .location-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .location-image {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .location-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .location-card:hover .location-image img {
+      transform: scale(1.05);
+    }
+
+    .location-details {
+      padding: 20px;
+    }
+
+    .location-details h3 {
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .location-info {
+      margin-bottom: 15px;
+    }
+
+    .location-info p {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .location-info i {
+      color: var(--primary);
+      margin-right: 10px;
+      min-width: 20px;
+      margin-top: 5px;
+    }
+
+    .location-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .location-btn {
+      flex: 1;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .primary-btn {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .outline-btn {
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .outline-btn:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* Contact Form Section */
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+    }
+
+    .contact-form h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .form-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-metrics {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .contact-metrics h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+
+    .metrics-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: var(--light);
+      transition: transform 0.3s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .metric-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 5px;
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    /* Voice Message */
+    .voice-message {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+    }
+
+    .voice-message h3 {
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+
+    .voice-recorder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .record-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .record-btn:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    .record-status {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .record-timer {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .record-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Instagram Feed */
+    .instagram-section {
+      margin-bottom: 40px;
+    }
+
+    .instagram-feed {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .instagram-post {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1/1;
+    }
+
+    .instagram-post img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .instagram-post:hover img {
+      transform: scale(1.05);
+    }
+
+    .instagram-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      padding: 15px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .instagram-post:hover .instagram-overlay {
+      opacity: 1;
+    }
+
+    .instagram-user {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .instagram-user img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .instagram-caption {
+      font-size: 0.8rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .instagram-tag {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 40px;
+    }
+
+    .faq-search {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .faq-search input {
+      width: 100%;
+      padding: 15px 20px;
+      padding-left: 50px;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .faq-search input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(196, 122, 79, 0.1);
+      outline: none;
+    }
+
+    .faq-search i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+
+    .faq-list {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #eee;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .faq-question:hover {
+      background-color: var(--light);
+    }
+
+    .faq-question h4 {
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    .faq-question i {
+      color: var(--primary);
+      transition: transform 0.3s;
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 20px 20px;
+    }
+
+    /* Chat Widget */
+    .chat-widget {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+    }
+
+    .chat-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .chat-button:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    .chat-popup {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 350px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: none;
+    }
+
+    .chat-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .chat-header i {
+      cursor: pointer;
+    }
+
+    .chat-body {
+      height: 300px;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .chat-message {
+      margin-bottom: 15px;
+      display: flex;
+    }
+
+    .chat-message.incoming {
+      justify-content: flex-start;
+    }
+
+    .chat-message.outgoing {
+      justify-content: flex-end;
+    }
+
+    .message-content {
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .incoming .message-content {
+      background-color: #f1f1f1;
+      color: var(--dark);
+      border-top-left-radius: 0;
+    }
+
+    .outgoing .message-content {
+      background-color: var(--primary);
+      color: white;
+      border-top-right-radius: 0;
+    }
+
+    .chat-footer {
+      padding: 15px;
+      border-top: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      margin-right: 10px;
+    }
+
+    .chat-input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .send-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .send-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .quick-reply {
+      padding: 8px 15px;
+      background-color: var(--light);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .quick-reply:hover {
+      background-color: var(--secondary);
+    }
+
+    /* Feedback Carousel */
+    .feedback-section {
+      margin-bottom: 40px;
+    }
+
+    .feedback-carousel {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      position: relative;
+    }
+
+    .feedback-slide {
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+
+    .feedback-slide.active {
+      display: block;
+    }
+
+    .feedback-quote {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--dark);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .feedback-quote::before,
+    .feedback-quote::after {
+      content: '"';
+      font-size: 2rem;
+      color: var(--primary);
+      position: absolute;
+      opacity: 0.3;
+    }
+
+    .feedback-quote::before {
+      top: -20px;
+      left: -10px;
+    }
+
+    .feedback-quote::after {
+      bottom: -40px;
+      right: -10px;
+    }
+
+    .feedback-author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feedback-author img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .author-title {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ddd;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .carousel-dot.active {
+      background-color: var(--primary);
+    }
+
+    .carousel-arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      pointer-events: none;
+    }
+
+    .carousel-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: background-color 0.3s;
+    }
+
+    .carousel-arrow:hover {
+      background-color: var(--light);
+    }
+
+    .feedback-btn {
+      display: block;
+      width: 200px;
+      margin: 30px auto 0;
+      padding: 12px 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .feedback-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Hidden Loyalty Code */
+    .hidden-loyalty {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .loyalty-trigger {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: var(--primary);
+      opacity: 0.3;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .loyalty-trigger:hover {
+      opacity: 1;
+    }
+
+    .loyalty-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .loyalty-content {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s;
+    }
+
+    .loyalty-popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loyalty-popup.active .loyalty-content {
+      transform: translateY(0);
+    }
+
+    .loyalty-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.2rem;
+      color: var(--gray);
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .loyalty-close:hover {
+      color: var(--primary-dark);
+    }
+
+    .loyalty-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .loyalty-code {
+      background-color: var(--light);
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 20px 0;
+      letter-spacing: 2px;
+    }
+
+    .loyalty-description {
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    .social-icon:hover {
+      background-color: var(--primary);
+    }
+
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+
+      .map {
+        height: 300px;
+      }
+
+      .chat-popup {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        margin-top: 15px;
+      }
+
+      .location-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .instagram-feed {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chat-popup {
+        width: 280px;
+        right: -20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2,21V19H20V21H2M20,8V5H18V8H20M20,3A2,2 0 0,1 22,5V8A2,2 0 0,1 20,10H18V13A4,4 0 0,1 14,17H8A4,4 0 0,1 4,13V3H20M16,5H6V13A2,2 0 0,0 8,15H14A2,2 0 0,0 16,13V5Z" fill="#c47a4f"/>
+        </svg>
+        <h1>Ancient Aroma</h1>
+      </div>
+      
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you! Visit us at one of our locations or reach out through any of our contact channels.</p>
+  </section>
+
+  <div class="container">
+    <!-- Map Section -->
+    <section class="map-section">
+      <div class="section-title">
+        <h2>Find Us</h2>
+      </div>
+      <div class="map-container">
+        <div class="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215151997223!2d-73.98784542396902!3d40.75798657138946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!16zL20vMDdxZHI!5e0!3m2!1sen!2sus!4v1682458116314!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-status">
+            <span class="status-indicator open"></span>
+            Open Now • 10 min wait
+          </div>
+        </div>
+        <div class="map-info">
+          <h3>Main Branch - Square 1</h3>
+          <div class="cafe-hours">
+            <h4>Opening Hours</h4>
+            <ul class="hours-list">
+              <li><span>Monday - Friday</span> <span>7:00 AM - 10:00 PM</span></li>
+              <li><span>Saturday</span> <span>8:00 AM - 11:00 PM</span></li>
+              <li><span>Sunday</span> <span>8:00 AM - 9:00 PM</span></li>
+            </ul>
+          </div>
+          <p><i class="fas fa-phone"></i> (212) 555-1234</p>
+          <p><i class="fas fa-envelope"></i> sq1@ancientaroma.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> 123 abcd</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section">
+      <div class="section-title">
+        <h2>Our Locations</h2>
+      </div>
+      <div class="location-cards">
+        <div class="location-card">
+          <div class="location-image">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2FmZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Downtown Cafe">
+          </div>
+          <div class="location-details">
+            <h3>Downtown Branch</h3>
+            <div class="location-info">
+              <p><i class="fas fa-map-marker-alt"></i> 456 abcd</p>
+              <p><i class="fas fa-phone"></i> (212) 555-5678</p>
+              <p><i class="fas fa-clock"></i> 7:00 AM - 9:00 PM</p>
+            </div>
+            <div class="location-actions">
+              <button class="location-btn primary-btn">
+                <i class="fas fa-directions"></i> Directions
+              </button>
+              <button class="location-btn outline-btn">
+                <i class="fas fa-phone"></i> Call
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="location-image">
+            <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FmZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Brooklyn Cafe">
+          </div>
+          <div class="location-details">
+            <h3>Brooklyn Branch</h3>
+            <div class="location-info">
+              <p><i class="fas fa-map-marker-alt"></i> 789 abcd</p>
+              <p><i class="fas fa-phone"></i> (718) 555-9012</p>
+              <p><i class="fas fa-clock"></i> 8:00 AM - 8:00 PM</p>
+            </div>
+            <div class="location-actions">
+              <button class="location-btn primary-btn">
+                <i class="fas fa-directions"></i> Directions
+              </button>
+              <button class="location-btn outline-btn">
+                <i class="fas fa-phone"></i> Call
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="location-image">
+            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNhZmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Queens Cafe">
+          </div>
+          <div class="location-details">
+            <h3>Queens Branch</h3>
+            <div class="location-info">
+              <p><i class="fas fa-map-marker-alt"></i> 321 abcd</p>
+              <p><i class="fas fa-phone"></i> (718) 555-3456</p>
+              <p><i class="fas fa-clock"></i> 7:30 AM - 9:30 PM</p>
+            </div>
+            <div class="location-actions">
+              <button class="location-btn primary-btn">
+                <i class="fas fa-directions"></i> Directions
+              </button>
+              <button class="location-btn outline-btn">
+                <i class="fas fa-phone"></i> Call
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="contactReason">Reason for Contact</label>
+            <select id="contactReason" class="form-control">
+              <option value="feedback">Feedback</option>
+              <option value="business">Business Inquiry</option>
+              <option value="careers">Careers</option>
+              <option value="events">Events</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" class="form-control" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="form-btn">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-info">
+        <div class="contact-metrics">
+          <h3>Our Response</h3>
+          <div class="metrics-container">
+            <div class="metric-card">
+              <div class="metric-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="metric-value">10 min</div>
+              <div class="metric-label">Avg. Response Time</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">
+                <i class="fas fa-comment"></i>
+              </div>
+              <div class="metric-value">2,300+</div>
+              <div class="metric-label">Messages Answered</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="metric-value">4.8/5</div>
+              <div class="metric-label">Customer Satisfaction</div>
+            </div>
+          </div>
+        </div>
+        <div class="voice-message">
+          <h3>Leave a Voice Message</h3>
+          <div class="voice-recorder">
+            <button class="record-btn" id="recordBtn">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <div class="record-status" id="recordStatus">Click to start recording</div>
+            <div class="record-timer" id="recordTimer">00:00</div>
+            <div class="record-actions">
+              <button class="location-btn primary-btn" id="sendAudioBtn" style="display: none;">
+                <i class="fas fa-paper-plane"></i> Send
+              </button>
+              <button class="location-btn outline-btn" id="cancelAudioBtn" style="display: none;">
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="instagram-section">
+      <div class="section-title">
+        <h2>Follow Us on Instagram</h2>
+      </div>
+      <div class="instagram-feed">
+        <div class="instagram-post">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Coffee Art">
+          <div class="instagram-overlay">
+            <div class="instagram-user">
+              <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="User">
+              <span>@coffee_lover</span>
+            </div>
+            <div class="instagram-caption">Best latte art I've ever seen! #AncientAromaCafe</div>
+          </div>
+        </div>
+        <div class="instagram-post">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvZmZlZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Coffee and Pastry">
+          <div class="instagram-overlay">
+            <div class="instagram-user">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+              <span>@foodie_nyc</span>
+            </div>
+            <div class="instagram-caption">Perfect breakfast combo! #AncientAromaCafe</div>
+          </div>
+        </div>
+        <div class="instagram-post">
+          <img src="https://images.unsplash.com/photo-1513267048331-5611cad62e41?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNvZmZlZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Coffee Shop">
+          <div class="instagram-overlay">
+            <div class="instagram-user">
+              <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="User">
+              <span>@city_explorer</span>
+            </div>
+            <div class="instagram-caption">My favorite spot to work! #AncientAromaCafe</div>
+          </div>
+        </div>
+        <div class="instagram-post">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Coffee Cup">
+          <div class="instagram-overlay">
+            <div class="instagram-user">
+              <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="User">
+              <span>@morning_person</span>
+            </div>
+            <div class="instagram-caption">Starting my day right! #AncientAromaCafe</div>
+          </div>
+        </div>
+        <div class="instagram-post">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGNvZmZlZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Coffee and Laptop">
+          <div class="instagram-overlay">
+            <div class="instagram-user">
+              <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="User">
+              <span>@remote_worker</span>
+            </div>
+            <div class="instagram-caption">My office for today! #AncientAromaCafe</div>
+          </div>
+        </div>
+        <div class="instagram-post">
+          <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Coffee Beans">
+          <div class="instagram-overlay">
+            <div class="instagram-user">
+              <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="User">
+              <span>@bean_enthusiast</span>
+            </div>
+            <div class="instagram-caption">Freshly roasted! #AncientAromaCafe</div>
+          </div>
+        </div>
+      </div>
+      <div class="instagram-tag">
+        Share your visit using <strong>#AncientAromaCafe</strong>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-search">
+        <i class="fas fa-search"></i>
+        <input type="text" id="faqSearch" placeholder="Search for questions...">
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Do you offer free WiFi?</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, we offer complimentary high-speed WiFi at all our locations. Simply ask our staff for the password.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Are your cafes pet-friendly?</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, well-behaved pets on leashes are welcome in our outdoor seating areas. Service animals are welcome throughout our cafes.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Do you offer vegan and gluten-free options?</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We have a variety of vegan and gluten-free options on our menu. Please inform our staff about any dietary restrictions or allergies.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Can I book a table in advance?</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, you can book a table through our website, by phone, or using our mobile app. Reservations are recommended for groups of 4 or more.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Do you cater for private events?</h4>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, we offer catering services and can host private events at select locations. Please contact us at events@ancientaroma.com for more information.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Carousel -->
+    <section class="feedback-section">
+      <div class="section-title">
+        <h2>What Our Customers Say</h2>
+      </div>
+      <div class="feedback-carousel">
+        <div class="feedback-slide active">
+          <div class="feedback-quote">
+            Ancient Aroma has the best coffee in town! The atmosphere is perfect for both work and relaxation. I come here almost every day.
+          </div>
+          <div class="feedback-author">
+            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Sarah Johnson">
+            <div class="author-name">Sarah Johnson</div>
+            <div class="author-title">Regular Customer</div>
+          </div>
+        </div>
+        <div class="feedback-slide">
+          <div class="feedback-quote">
+            The staff is incredibly friendly and the pastries are to die for. This place has become my weekend ritual!
+          </div>
+          <div class="feedback-author">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+            <div class="author-name">Michael Chen</div>
+            <div class="author-title">Food Blogger</div>
+          </div>
+        </div>
+        <div class="feedback-slide">
+          <div class="feedback-quote">
+            I hosted a business meeting here and everything was perfect. Great service, amazing coffee, and a professional atmosphere.
+          </div>
+          <div class="feedback-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+            <div class="author-name">Emily Rodriguez</div>
+            <div class="author-title">Business Executive</div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-dot active" data-slide="0"></div>
+          <div class="carousel-dot" data-slide="1"></div>
+          <div class="carousel-dot" data-slide="2"></div>
+        </div>
+        <div class="carousel-arrows">
+          <div class="carousel-arrow prev">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="carousel-arrow next">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+      <button class="feedback-btn">Leave Your Feedback</button>
+    </section>
+
+    <!-- Hidden Loyalty Code -->
+    <div class="hidden-loyalty">
+      <div class="loyalty-trigger" id="loyaltyTrigger">
+        <i class="fas fa-coffee"></i>
+      </div>
+      <div class="loyalty-popup" id="loyaltyPopup">
+        <div class="loyalty-content">
+          <div class="loyalty-close" id="loyaltyClose">
+            <i class="fas fa-times"></i>
+          </div>
+          <h3 class="loyalty-title">You Found Our Secret!</h3>
+          <p class="loyalty-description">Congratulations on discovering our hidden coffee bean! Use this code for a free drink on your next visit:</p>
+          <div class="loyalty-code">AROMA2023</div>
+          <p class="loyalty-description">Valid for 7 days. One-time use only.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget">
+    <div class="chat-button" id="chatButton">
+      <i class="fas fa-comment"></i>
+    </div>
+    <div class="chat-popup" id="chatPopup">
+      <div class="chat-header">
+        <h3>Chat with Us</h3>
+        <i class="fas fa-times" id="chatClose"></i>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-message incoming">
+          <div class="message-content">
+            Hello! How can we help you today?
+          </div>
+        </div>
+      </div>
+      <div class="quick-replies">
+        <div class="quick-reply" data-message="I'd like to book a table">Book a Table</div>
+        <div class="quick-reply" data-message="Can I see your menu?">Menu</div>
+        <div class="quick-reply" data-message="Do you offer catering?">Catering</div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
+        <button class="send-btn" id="sendMessage">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Ancient Aroma</h3>
+          <p>Serving premium coffee and delicious food in a warm, welcoming atmosphere since 2010.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><a href="tel:+12125551234">(212) 555-1234</a></li>
+            <li><a href="mailto:info@ancientaroma.com">info@ancientaroma.com</a></li>
+            <li>123 abcd</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Opening Hours</h3>
+          <ul class="footer-links">
+            <li>Monday - Friday: 7:00 AM - 10:00 PM</li>
+            <li>Saturday: 8:00 AM - 11:00 PM</li>
+            <li>Sunday: 8:00 AM - 9:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ancient Aroma Cafe. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    // FAQ Search
+    const faqSearch = document.getElementById('faqSearch');
+    faqSearch.addEventListener('input', () => {
+      const searchTerm = faqSearch.value.toLowerCase();
+      faqItems.forEach(item => {
+        const question = item.querySelector('h4').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+        
+        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+
+    // Feedback Carousel
+    const slides = document.querySelectorAll('.feedback-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.querySelector('.carousel-arrow.prev');
+    const nextBtn = document.querySelector('.carousel-arrow.next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+
+    // Auto-rotate carousel
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 5000);
+
+    // Chat Widget
+    const chatButton = document.getElementById('chatButton');
+    const chatPopup = document.getElementById('chatPopup');
+    const chatClose = document.getElementById('chatClose');
+    const chatInput = document.getElementById('chatInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const chatBody = document.getElementById('chatBody');
+    const quickReplies = document.querySelectorAll('.quick-reply');
+
+    chatButton.addEventListener('click', () => {
+      chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    chatClose.addEventListener('click', () => {
+      chatPopup.style.display = 'none';
+    });
+
+    function addMessage(message, isOutgoing = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `chat-message ${isOutgoing ? 'outgoing' : 'incoming'}`;
+      messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+      chatBody.appendChild(messageDiv);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function sendChatMessage() {
+      const message = chatInput.value.trim();
+      if (message) {
+        addMessage(message, true);
+        chatInput.value = '';
+        
+        // Simulate response after a short delay
+        setTimeout(() => {
+          addMessage('Thank you for your message! Our team will get back to you shortly.');
+        }, 1000);
+      }
+    }
+
+    sendMessage.addEventListener('click', sendChatMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    });
+
+    quickReplies.forEach(reply => {
+      reply.addEventListener('click', () => {
+        const message = reply.getAttribute('data-message');
+        addMessage(message, true);
+        
+        setTimeout(() => {
+          if (message.includes('book')) {
+            addMessage('You can book a table by calling us at (212) 555-1234 or using our online reservation system. Would you like me to send you the link?');
+          } else if (message.includes('menu')) {
+            addMessage('You can view our full menu at www.ancientaroma.com/menu. We have a variety of coffee drinks, pastries, and light meals.');
+          } else if (message.includes('catering')) {
+            addMessage('Yes, we offer catering services for events of all sizes. Please email us at catering@ancientaroma.com with your requirements.');
+          }
+        }, 1000);
+      });
+    });
+
+    // Voice Message Recorder
+    const recordBtn = document.getElementById('recordBtn');
+    const recordStatus = document.getElementById('recordStatus');
+    const recordTimer = document.getElementById('recordTimer');
+    const sendAudioBtn = document.getElementById('sendAudioBtn');
+    const cancelAudioBtn = document.getElementById('cancelAudioBtn');
+    
+    let isRecording = false;
+    let recordingTime = 0;
+    let recordingInterval;
+    
+    recordBtn.addEventListener('click', () => {
+      if (!isRecording) {
+        // Start recording
+        isRecording = true;
+        recordBtn.innerHTML = '<i class="fas fa-stop"></i>';
+        recordBtn.style.backgroundColor = '#F44336';
+        recordStatus.textContent = 'Recording...';
+        recordingTime = 0;
+        updateRecordingTimer();
+        recordingInterval = setInterval(updateRecordingTimer, 1000);
+        sendAudioBtn.style.display = 'none';
+        cancelAudioBtn.style.display = 'none';
+        
+        // Simulate recording (in a real app, you would use the MediaRecorder API)
+        setTimeout(() => {
+          if (isRecording) {
+            sendAudioBtn.style.display = 'block';
+            cancelAudioBtn.style.display = 'block';
+          }
+        }, 3000);
+      } else {
+        // Stop recording
+        stopRecording();
+      }
+    });
+    
+    sendAudioBtn.addEventListener('click', () => {
+      alert('Thank you for your voice message! Our team will listen to it shortly.');
+      resetRecording();
+    });
+    
+    cancelAudioBtn.addEventListener('click', () => {
+      resetRecording();
+    });
+    
+    function stopRecording() {
+      isRecording = false;
+      clearInterval(recordingInterval);
+      recordBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+      recordBtn.style.backgroundColor = '';
+      recordStatus.textContent = 'Recording stopped';
+      sendAudioBtn.style.display = 'block';
+      cancelAudioBtn.style.display = 'block';
+    }
+    
+    function resetRecording() {
+      isRecording = false;
+      clearInterval(recordingInterval);
+      recordBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+      recordBtn.style.backgroundColor = '';
+      recordStatus.textContent = 'Click to start recording';
+      recordingTime = 0;
+      updateRecordingTimer();
+      sendAudioBtn.style.display = 'none';
+      cancelAudioBtn.style.display = 'none';
+    }
+    
+    function updateRecordingTimer() {
+      const minutes = Math.floor(recordingTime / 60).toString().padStart(2, '0');
+      const seconds = (recordingTime % 60).toString().padStart(2, '0');
+      recordTimer.textContent = `${minutes}:${seconds}`;
+      recordingTime++;
+    }
+
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const reason = document.getElementById('contactReason').value;
+      const message = document.getElementById('message').value;
+      
+      // In a real app, you would send this data to your server
+      alert(`Thank you for your message, ${name}! We'll get back to you soon.`);
+      contactForm.reset();
+    });
+
+    // Hidden Loyalty Code
+    const loyaltyTrigger = document.getElementById('loyaltyTrigger');
+    const loyaltyPopup = document.getElementById('loyaltyPopup');
+    const loyaltyClose = document.getElementById('loyaltyClose');
+    
+    loyaltyTrigger.addEventListener('click', () => {
+      loyaltyPopup.style.opacity = '1';
+      loyaltyPopup.style.visibility = 'visible';
+      loyaltyPopup.querySelector('.loyalty-content').style.transform = 'translateY(0)';
+    });
+    
+    loyaltyClose.addEventListener('click', () => {
+      loyaltyPopup.style.opacity = '0';
+      loyaltyPopup.style.visibility = 'hidden';
+      loyaltyPopup.querySelector('.loyalty-content').style.transform = 'translateY(20px)';
+    });
+
+    // Feedback Button
+    const feedbackBtn = document.querySelector('.feedback-btn');
+    feedbackBtn.addEventListener('click', () => {
+      document.querySelector('.contact-form').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('contactReason').value = 'feedback';
+    });
+
+    // Location Buttons
+    const directionBtns = document.querySelectorAll('.location-btn.primary-btn');
+    const callBtns = document.querySelectorAll('.location-btn.outline-btn');
+    
+    directionBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // In a real app, you would open Google Maps with the location
+        alert('Opening directions in Google Maps...');
+      });
+    });
+    
+    callBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const phoneNumber = this.closest('.location-card').querySelector('.location-info p:nth-child(2)').textContent.replace(/[^0-9]/g, '');
+        window.location.href = `tel:${phoneNumber}`;
+      });
+    });
+
+    // Simulate live status
+    function updateCafeStatus() {
+      const now = new Date();
+      const hour = now.getHours();
+      const day = now.getDay();
+      const statusIndicator = document.querySelector('.status-indicator');
+      const statusText = document.querySelector('.map-status');
+      
+      // Check if cafe is open (Mon-Fri: 7am-10pm, Sat: 8am-11pm, Sun: 8am-9pm)
+      let isOpen = false;
+      if (day >= 1 && day <= 5) { // Monday to Friday
+        isOpen = hour >= 7 && hour < 22;
+      } else if (day === 6) { // Saturday
+        isOpen = hour >= 8 && hour < 23;
+      } else { // Sunday
+        isOpen = hour >= 8 && hour < 21;
+      }
+      
+      if (isOpen) {
+        // Simulate different wait times based on time of day
+        let waitTime;
+        if (hour >= 7 && hour < 9 || hour >= 12 && hour < 14 || hour >= 17 && hour < 19) {
+          statusIndicator.className = 'status-indicator busy';
+          waitTime = '15-20 min wait';
+        } else {
+          statusIndicator.className = 'status-indicator open';
+          waitTime = '5-10 min wait';
+        }
+        statusText.innerHTML = `<span class="status-indicator ${hour >= 7 && hour < 9 || hour >= 12 && hour < 14 || hour >= 17 && hour < 19 ? 'busy' : 'open'}"></span> Open Now • ${waitTime}`;
+      } else {
+        statusIndicator.className = 'status-indicator closed';
+        statusText.innerHTML = '<span class="status-indicator closed"></span> Closed Now';
+      }
+    }
+    
+    updateCafeStatus();
+    setInterval(updateCafeStatus, 60000); // Update every minute
+  </script>
+</body>
+</html>

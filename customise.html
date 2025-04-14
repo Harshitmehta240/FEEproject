@@ -1,0 +1,2687 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Aroma | Premium Coffee Customization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent: #d4a373;
+            --accent-hover: #c69c6d;
+            --accent-light: rgba(212, 163, 115, 0.1);
+            --card-bg: #ffffff;
+            --card-border: #dee2e6;
+            --input-bg: #f8f9fa;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            --success: #4caf50;
+            --error: #f44336;
+            --warning: #ff9800;
+            --info: #2196f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: all 0.5s ease;
+            filter: brightness(0.6);
+            z-index: -1;
+        }
+
+        .header-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .header-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .navbar.scrolled {
+            background-color: var(--bg-primary);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .navbar-logo {
+            color: var(--text-primary);
+        }
+
+        .navbar-logo span {
+            color: var(--accent);
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Cart Button */
+        .cart-btn {
+            position: relative;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .navbar.scrolled .cart-btn {
+            color: var(--text-primary);
+        }
+
+        .cart-btn:hover {
+            color: var(--accent);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--card-border);
+            overflow-x: auto;
+            padding-bottom: 10px;
+            position: sticky;
+            top: 70px;
+            background-color: var(--bg-primary);
+            z-index: 90;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-navigation.sticky {
+            position: sticky;
+            top: 70px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent);
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .tab-btn .tab-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 40px 0 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .customizer-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            position: relative;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        /* Coffee Customizer Form */
+        .customizer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .form-section {
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 25px;
+            scroll-margin-top: 150px;
+            display: none; /* Hide all sections by default */
+        }
+
+        .form-section.active {
+            display: block; /* Show only active section */
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .section-title span {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            margin: 15px 0 10px;
+            color: var(--text-primary);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .option-item {
+            background-color: var(--bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-item.selected {
+            border-color: var(--accent);
+            background-color: var(--accent-light);
+        }
+
+        .option-item.selected::after {
+            content: "✓";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .option-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            font-weight: 500;
+            margin-top: auto;
+        }
+
+        .option-price {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Sliders */
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .slider-value {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: var(--bg-tertiary);
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* Notes Textarea */
+        .notes-textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-light);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Coffee Preview */
+        .coffee-preview {
+            position: sticky;
+            top: 150px;
+            margin-top: 30px;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .coffee-cup-container {
+            position: relative;
+            width: 250px;
+            height: 300px;
+            margin-bottom: 40px;
+            perspective: 1000px;
+        }
+
+        .coffee-cup {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+
+        .coffee-cup.animate {
+            animation: rotateCup 3s ease-in-out;
+        }
+
+        @keyframes rotateCup {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .cup {
+            position: absolute;
+            width: 150px;
+            height: 180px;
+            background-color: #fff;
+            border-radius: 0 0 70px 70px;
+            box-shadow: 0 0 0 10px #d9d9d9;
+            margin: 0 auto;
+            left: 25px;
+            overflow: hidden;
+        }
+
+        .handle {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            border: 10px solid #d9d9d9;
+            border-left: none;
+            border-radius: 0 40px 40px 0;
+            right: 15px;
+            top: 50px;
+        }
+
+        .liquid {
+            position: absolute;
+            width: 130px;
+            height: 0;
+            background-color: #6f4e37;
+            border-radius: 0 0 65px 65px;
+            top: 10px;
+            left: 10px;
+            transition: all 2s ease;
+            overflow: hidden;
+        }
+
+        .liquid.filled {
+            height: 160px;
+        }
+
+        .steam {
+            position: absolute;
+            width: 8px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            animation: steam 2s infinite;
+            opacity: 0;
+        }
+
+        .steam:nth-child(1) {
+            left: 50px;
+            top: -20px;
+            animation-delay: 0.2s;
+        }
+
+        .steam:nth-child(2) {
+            left: 70px;
+            top: -20px;
+            animation-delay: 0.6s;
+        }
+
+        .steam:nth-child(3) {
+            left: 90px;
+            top: -20px;
+            animation-delay: 1s;
+        }
+
+        @keyframes steam {
+            0% {
+                transform: translateY(0) scaleX(1);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-20px) scaleX(3);
+            }
+            95% {
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(-40px) scaleX(1);
+            }
+        }
+
+        .topping {
+            position: absolute;
+            width: 130px;
+            height: 20px;
+            top: 10px;
+            left: 10px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .whipped-cream {
+            background-color: #f5f5f5;
+            height: 30px;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .chocolate-powder {
+            background-color: #3a2718;
+            height: 5px;
+        }
+
+        .cinnamon-powder {
+            background-color: #a0522d;
+            height: 5px;
+        }
+
+        .coffee-details {
+            width: 100%;
+            padding: 25px;
+            background-color: var(--bg-tertiary);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .coffee-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .coffee-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .nutrition-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .nutrition-item {
+            text-align: center;
+        }
+
+        .nutrition-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .nutrition-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Cart Overlay */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .cart-overlay.active .cart-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .cart-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+        }
+
+        .cart-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-close:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .cart-body {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: var(--bg-tertiary);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .cart-item-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .cart-item-remove {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--error);
+            transform: scale(1.1);
+        }
+
+        .cart-footer {
+            padding: 25px 30px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .cart-total-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Payment Overlay */
+        .payment-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            overflow-y: auto;
+        }
+
+        .payment-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .payment-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+            margin: 40px 0;
+        }
+
+        .payment-overlay.active .payment-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .payment-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .payment-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+        }
+
+        .payment-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-close:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .payment-body {
+            padding: 30px;
+        }
+
+        .payment-section {
+            margin-bottom: 30px;
+        }
+
+        .payment-section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .order-summary {
+            background-color: var(--bg-tertiary);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .summary-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .price-item-name {
+            color: var(--text-secondary);
+        }
+
+        .price-item-value {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 1px solid var(--card-border);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .price-total-value {
+            color: var(--accent);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+
+        .payment-methods-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 576px) {
+            .payment-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .payment-option {
+            background-color: var(--bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .payment-option.selected {
+            border-color: var(--accent);
+            background-color: var(--accent-light);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .payment-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--bg-tertiary);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success Modal */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .success-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-container {
+            width: 90%;
+            max-width: 500px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+            position: relative;
+        }
+
+        .success-modal.active .success-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .success-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-close:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .success-message {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .order-number {
+            background-color: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .order-number span {
+            color: var(--accent);
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: var(--success);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+        }
+
+        .toast.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .header-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-title {
+                font-size: 3rem;
+            }
+            .header-subtitle {
+                font-size: 1.3rem;
+            }
+            .coffee-cup-container {
+                transform: scale(0.9);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .coffee-cup-container {
+                transform: scale(0.8);
+            }
+            .options-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            .tab-navigation {
+                justify-content: flex-start;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-title {
+                font-size: 2rem;
+            }
+            .navbar-logo {
+                font-size: 1.5rem;
+            }
+            .coffee-cup-container {
+                transform: scale(0.7);
+            }
+            .options-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="navbar-logo">Ancient<span>Aroma</span></a>
+            <div class="navbar-menu">
+                <button class="cart-btn" id="cart-btn">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-bg" id="header-bg" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="header-content">
+            <h1 class="header-title">Ancient Aroma</h1>
+            <p class="header-subtitle">Craft your perfect coffee experience with our custom blend creator</p>
+            <button class="header-btn" id="scroll-to-customize">Start Customizing</button>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tab-navigation" id="tab-navigation">
+        <button class="tab-btn active" data-section="coffee-base-section">
+            <span class="tab-icon">☕</span> Base
+        </button>
+        <button class="tab-btn" data-section="milk-section">
+            <span class="tab-icon">🥛</span> Milk
+        </button>
+        <button class="tab-btn" data-section="sweetener-section">
+            <span class="tab-icon">🍬</span> Sweetener
+        </button>
+        <button class="tab-btn" data-section="flavor-section">
+            <span class="tab-icon">🍦</span> Flavor
+        </button>
+        <button class="tab-btn" data-section="temperature-section">
+            <span class="tab-icon">❄️</span> Temperature
+        </button>
+        <button class="tab-btn" data-section="size-section">
+            <span class="tab-icon">📏</span> Size
+        </button>
+        <button class="tab-btn" data-section="toppings-section">
+            <span class="tab-icon">🍫</span> Toppings
+        </button>
+        <button class="tab-btn" data-section="notes-section">
+            <span class="tab-icon">📝</span> Notes
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="customizer-container">
+                <!-- Coffee Customizer Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Customize Your Coffee</h2>
+                        <p class="card-subtitle">Select your preferences to create your perfect brew</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="customizer-form">
+                            <!-- Coffee Base Section -->
+                            <div class="form-section active" id="coffee-base-section">
+                                <h3 class="section-title"><span>☕</span> Coffee Base Selection</h3>
+                                <div class="options-grid" id="coffee-base">
+                                    <div class="option-item" data-value="Espresso" data-price="250" data-bg="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Espresso">
+                                        <div class="option-label">Espresso</div>
+                                        <div class="option-price">₹250</div>
+                                    </div>
+                                    <div class="option-item" data-value="Americano" data-price="275" data-bg="https://images.unsplash.com/photo-1551030173-122aabc4489c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                                        <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Americano">
+                                        <div class="option-label">Americano</div>
+                                        <div class="option-price">₹275</div>
+                                    </div>
+                                    <div class="option-item" data-value="Cold Brew" data-price="325" data-bg="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Cold Brew">
+                                        <div class="option-label">Cold Brew</div>
+                                        <div class="option-price">₹325</div>
+                                    </div>
+                                    <div class="option-item" data-value="Cappuccino" data-price="350" data-bg="https://images.unsplash.com/photo-1534687941688-13b0d0449b2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                                        <img src="cappuccino.jpeg" class="option-image" alt="Cappuccino">
+                                        <div class="option-label">Cappuccino</div>
+                                        <div class="option-price">₹350</div>
+                                    </div>
+                                    <div class="option-item" data-value="Latte" data-price="375" data-bg="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                                        <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Latte">
+                                        <div class="option-label">Latte</div>
+                                        <div class="option-price">₹375</div>
+                                    </div>
+                                    <div class="option-item" data-value="Mocha" data-price="425" data-bg="https://images.unsplash.com/photo-1572286258217-215cf8e8e48e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                                        <img src="cafe mocha.jpeg" class="option-image" alt="Mocha">
+                                        <div class="option-label">Mocha</div>
+                                        <div class="option-price">₹425</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Milk Options Section -->
+                            <div class="form-section" id="milk-section">
+                                <h3 class="section-title"><span>🥛</span> Milk Options</h3>
+                                <h4 class="section-subtitle">Dairy:</h4>
+                                <div class="options-grid" id="milk-dairy">
+                                    <div class="option-item" data-value="Whole Milk" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Whole Milk">
+                                        <div class="option-label">Whole Milk</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Skim Milk" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Skim Milk">
+                                        <div class="option-label">Skim Milk</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="2% Milk" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1576186726115-4d51596775d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="2% Milk">
+                                        <div class="option-label">2% Milk</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    
+                                </div>
+                                <h4 class="section-subtitle">Non-dairy:</h4>
+                                <div class="options-grid" id="milk-nondairy">
+                                    <div class="option-item" data-value="Almond Milk" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1600718374662-0483d2b9da44?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Almond Milk">
+                                        <div class="option-label">Almond Milk</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    
+                                    <div class="option-item" data-value="Coconut Milk" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Coconut Milk">
+                                        <div class="option-label">Coconut Milk</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sweetener Section -->
+                            <div class="form-section" id="sweetener-section">
+                                <h3 class="section-title"><span>🍬</span> Sweetener Choices</h3>
+                                <div class="options-grid" id="sweetener">
+                                    <div class="option-item" data-value="Sugar" data-price="0">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Sugar">
+                                        <div class="option-label">Sugar</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Brown Sugar" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1558642891-54be180ea339?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Brown Sugar">
+                                        <div class="option-label">Brown Sugar</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Honey" data-price="40">
+                                        <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Honey">
+                                        <div class="option-label">Honey</div>
+                                        <div class="option-price">+₹40</div>
+                                    </div>
+                                    
+                                    <div class="option-item" data-value="Stevia" data-price="20">
+                                        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Stevia">
+                                        <div class="option-label">Stevia</div>
+                                        <div class="option-price">+₹20</div>
+                                    </div>
+                                    <div class="option-item" data-value="Sugar-Free" data-price="20">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Sugar-Free">
+                                        <div class="option-label">Sugar-Free</div>
+                                        <div class="option-price">+₹20</div>
+                                    </div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-label">
+                                        <span>Sweetness Level:</span>
+                                        <span class="slider-value" id="sweetness-value">Medium</span>
+                                    </div>
+                                    <input type="range" min="1" max="5" value="3" class="slider" id="sweetness-slider">
+                                </div>
+                            </div>
+                            
+                            <!-- Flavor Section -->
+                            <div class="form-section" id="flavor-section">
+                                <h3 class="section-title"><span>🍦</span> Flavor Shots / Syrups</h3>
+                                <div class="options-grid" id="flavor">
+                                    <div class="option-item" data-value="Vanilla" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1631206753348-db44968fd440?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Vanilla">
+                                        <div class="option-label">Vanilla</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    
+                                    <div class="option-item" data-value="Caramel" data-price="60">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Caramel">
+                                        <div class="option-label">Caramel</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    <div class="option-item" data-value="Mocha" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Mocha">
+                                        <div class="option-label">Mocha</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    <div class="option-item" data-value="Pumpkin Spice" data-price="75">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Pumpkin Spice">
+                                        <div class="option-label">Pumpkin Spice</div>
+                                        <div class="option-price">+₹75</div>
+                                    </div>
+                                    <div class="option-item" data-value="Sugar-Free Vanilla" data-price="75">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Sugar-Free Vanilla">
+                                        <div class="option-label">SF Vanilla</div>
+                                        <div class="option-price">+₹75</div>
+                                    </div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-label">
+                                        <span>Flavor Intensity:</span>
+                                        <span class="slider-value" id="flavor-value">Regular</span>
+                                    </div>
+                                    <input type="range" min="1" max="3" value="2" class="slider" id="flavor-slider">
+                                </div>
+                            </div>
+                            
+                            <!-- Temperature Section -->
+                            <div class="form-section" id="temperature-section">
+                                <h3 class="section-title"><span>❄️</span> Temperature & Ice Control</h3>
+                                <div class="options-grid" id="temperature">
+                                    <div class="option-item" data-value="Hot" data-price="0">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Hot">
+                                        <div class="option-label">Hot</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Warm" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Warm">
+                                        <div class="option-label">Warm</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Iced" data-price="40">
+                                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Iced">
+                                        <div class="option-label">Iced</div>
+                                        <div class="option-price">+₹40</div>
+                                    </div>
+                                    <div class="option-item" data-value="Blended" data-price="80">
+                                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Blended">
+                                        <div class="option-label">Blended</div>
+                                        <div class="option-price">+₹80</div>
+                                    </div>
+                                </div>
+                                <div id="ice-options" style="display: none; margin-top: 20px;">
+                                    <h4 class="section-subtitle">Ice Level:</h4>
+                                    <div class="options-grid" id="ice">
+                                        <div class="option-item" data-value="No Ice" data-price="0">
+                                            <img src="https://images.unsplash.com/photo-1523362289600-a70b4a0e09e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="No Ice">
+                                            <div class="option-label">No Ice</div>
+                                            <div class="option-price">Included</div>
+                                        </div>
+                                        <div class="option-item" data-value="Light Ice" data-price="0">
+                                            <img src="https://images.unsplash.com/photo-1570526427001-9d80d114054d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-  class="option-image" alt="Light Ice">
+                                            <div class="option-label">Light Ice</div>
+                                            <div class="option-price">Included</div>
+                                        </div>
+                                        <div class="option-item" data-value="Regular Ice" data-price="0">
+                                            <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Regular Ice">
+                                            <div class="option-label">Regular</div>
+                                            <div class="option-price">Included</div>
+                                        </div>
+                                        <div class="option-item" data-value="Extra Ice" data-price="0">
+                                            <img src="https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Extra Ice">
+                                            <div class="option-label">Extra Ice</div>
+                                            <div class="option-price">Included</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Size & Strength Section -->
+                            <div class="form-section" id="size-section">
+                                <h3 class="section-title"><span>📏</span> Size & Strength</h3>
+                                <h4 class="section-subtitle">Cup Size:</h4>
+                                <div class="options-grid" id="size">
+                                    <div class="option-item" data-value="Small" data-price="-40">
+                                        <img src="https://images.unsplash.com/photo-1572119865084-43c285814d63?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Small">
+                                        <div class="option-label">Small</div>
+                                        <div class="option-price">-₹40</div>
+                                    </div>
+                                    <div class="option-item" data-value="Medium" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Medium">
+                                        <div class="option-label">Medium</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Large" data-price="80">
+                                        <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Large">
+                                        <div class="option-label">Large</div>
+                                        <div class="option-price">+₹80</div>
+                                    </div>
+                                </div>
+                                <h4 class="section-subtitle">Caffeine Strength:</h4>
+                                <div class="options-grid" id="strength">
+                                    <div class="option-item" data-value="Regular" data-price="0">
+                                        <img src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Regular">
+                                        <div class="option-label">Regular</div>
+                                        <div class="option-price">Included</div>
+                                    </div>
+                                    <div class="option-item" data-value="Strong" data-price="40">
+                                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Strong">
+                                        <div class="option-label">Strong</div>
+                                        <div class="option-price">+₹40</div>
+                                    </div>
+                                    <div class="option-item" data-value="Extra Shot" data-price="80">
+                                        <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Extra Shot">
+                                        <div class="option-label">Extra Shot</div>
+                                        <div class="option-price">+₹80</div>
+                                    </div>
+                                    <div class="option-item" data-value="Double Shot" data-price="120">
+                                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Double Shot">
+                                        <div class="option-label">Double Shot</div>
+                                        <div class="option-price">+₹120</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Toppings Section -->
+                            <div class="form-section" id="toppings-section">
+                                <h3 class="section-title"><span>🍫</span> Toppings & Extras</h3>
+                                <div class="options-grid" id="toppings">
+                                    <div class="option-item" data-value="Whipped Cream" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Whipped Cream">
+                                        <div class="option-label">Whipped Cream</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    <div class="option-item" data-value="Chocolate Powder" data-price="40">
+                                        <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Chocolate Powder">
+                                        <div class="option-label">Chocolate</div>
+                                        <div class="option-price">+₹40</div>
+                                    </div>
+                                   
+                                    <div class="option-item" data-value="Marshmallows" data-price="60">
+                                        <img src="data:image/jpeg;base64,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" class="option-image" alt="Marshmallows">
+                                        <div class="option-label">Marshmallows</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    <div class="option-item" data-value="Cookie Crumbs" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Cookie Crumbs">
+                                        <div class="option-label">Cookie Crumbs</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                    <div class="option-item" data-value="Shaved Chocolate" data-price="60">
+                                        <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="option-image" alt="Shaved Chocolate">
+                                        <div class="option-label">Shaved Chocolate</div>
+                                        <div class="option-price">+₹60</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Notes Section -->
+                            <div class="form-section" id="notes-section">
+                                <h3 class="section-title"><span>📝</span> Special Instructions</h3>
+                                <textarea id="custom-notes" class="notes-textarea" placeholder="Add any special instructions or requests here..."></textarea>
+                            </div>
+                            
+                            <div class="btn-group">
+                                <button class="btn btn-primary" id="add-to-cart-btn">
+                                    <span class="btn-icon">🛒</span> Add to Cart
+                                </button>
+                                <button class="btn btn-outline" id="save-coffee-btn">
+                                    <span class="btn-icon">💾</span> Save This Recipe
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coffee Preview -->
+                <div class="coffee-preview">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Coffee Preview</h2>
+                            <p class="card-subtitle">See your custom creation come to life</p>
+                        </div>
+                        <div class="card-body preview-container">
+                            <div class="coffee-cup-container">
+                                <div class="coffee-cup">
+                                    <div class="cup"></div>
+                                    <div class="handle"></div>
+                                    <div class="liquid"></div>
+                                    <div class="steam"></div>
+                                    <div class="steam"></div>
+                                    <div class="steam"></div>
+                                    <div class="topping whipped-cream"></div>
+                                    <div class="topping chocolate-powder"></div>
+                                    <div class="topping cinnamon-powder"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="coffee-details">
+                                <div class="coffee-name" id="coffee-name">Your Custom Coffee</div>
+                                <div class="coffee-description" id="coffee-description">
+                                    Select your preferences to create your perfect coffee.
+                                </div>
+                                
+                                <div class="nutrition-info">
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-value" id="calories">0</div>
+                                        <div class="nutrition-label">Calories</div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-value" id="caffeine">0</div>
+                                        <div class="nutrition-label">Caffeine (mg)</div>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <div class="nutrition-value" id="price">₹0</div>
+                                        <div class="nutrition-label">Price</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2 class="cart-title">Your Cart</h2>
+                <button class="cart-close" id="cart-close">×</button>
+            </div>
+            <div class="cart-body">
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be added here -->
+                </div>
+                <div id="cart-empty" class="cart-empty">
+                    Your cart is empty. Add some delicious coffee!
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <div class="cart-total-label">Total:</div>
+                    <div class="cart-total-value" id="cart-total">₹0</div>
+                </div>
+                <button class="btn btn-primary" id="checkout-btn">
+                    <span class="btn-icon">💰</span> Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Overlay -->
+    <div class="payment-overlay" id="payment-overlay">
+        <div class="payment-container">
+            <div class="payment-header">
+                <h2 class="payment-title">Complete Your Order</h2>
+                <button class="payment-close" id="payment-close">×</button>
+            </div>
+            <div class="payment-body">
+                <!-- Customer Information Section -->
+                <div class="payment-section">
+                    <h3 class="payment-section-title">Customer Information</h3>
+                    <div class="form-group">
+                        <label class="form-label" for="customer-name">Full Name <span style="color: var(--error);">*</span></label>
+                        <input type="text" id="customer-name" class="form-input" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="customer-email">Email Address <span style="color: var(--error);">*</span></label>
+                        <input type="email" id="customer-email" class="form-input" required placeholder="Enter your email address">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="customer-phone">Phone Number <span style="color: var(--error);">*</span></label>
+                        <input type="tel" id="customer-phone" class="form-input" required placeholder="Enter your phone number">
+                    </div>
+                </div>
+
+                <!-- Order Summary Section -->
+                <div class="payment-section">
+                    <h3 class="payment-section-title">Order Summary</h3>
+                    <div class="order-summary">
+                        <div id="price-breakdown-items">
+                            <!-- Price breakdown items will be added here -->
+                        </div>
+                        <div class="price-total">
+                            <div>Total Amount</div>
+                            <div class="price-total-value" id="total-price">₹0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Method Section -->
+                <div class="payment-section">
+                    <h3 class="payment-section-title">Payment Method <span style="color: var(--error);">*</span></h3>
+                    <div class="payment-options">
+                        <div class="payment-option" data-method="Credit Card">
+                            <div class="payment-icon">💳</div>
+                            <div class="payment-name">Credit Card</div>
+                        </div>
+                        <div class="payment-option" data-method="Debit Card">
+                            <div class="payment-icon">💳</div>
+                            <div class="payment-name">Debit Card</div>
+                        </div>
+                        <div class="payment-option" data-method="PayPal">
+                            <div class="payment-icon">🅿️</div>
+                            <div class="payment-name">PayPal</div>
+                        </div>
+                        <div class="payment-option" data-method="UPI">
+                            <div class="payment-icon">📱</div>
+                            <div class="payment-name">UPI</div>
+                        </div>
+                        <div class="payment-option" data-method="Net Banking">
+                            <div class="payment-icon">🏦</div>
+                            <div class="payment-name">Net Banking</div>
+                        </div>
+                        <div class="payment-option" data-method="Cash">
+                            <div class="payment-icon">💵</div>
+                            <div class="payment-name">Cash</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credit Card Details (shown conditionally) -->
+                <div class="payment-section" id="card-details-section">
+                    <h3 class="payment-section-title">Card Details</h3>
+                    <div class="form-group">
+                        <label class="form-label" for="card-number">Card Number <span style="color: var(--error);">*</span></label>
+                        <input type="text" id="card-number" class="form-input" required placeholder="XXXX XXXX XXXX XXXX">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="card-expiry">Expiry Date <span style="color: var(--error);">*</span></label>
+                            <input type="text" id="card-expiry" class="form-input" required placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="card-cvv">CVV <span style="color: var(--error);">*</span></label>
+                            <input type="text" id="card-cvv" class="form-input" required placeholder="XXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="card-name">Name on Card <span style="color: var(--error);">*</span></label>
+                        <input type="text" id="card-name" class="form-input" required placeholder="Enter name as shown on card">
+                    </div>
+                </div>
+                
+                <div class="loading-spinner" id="loading-spinner"></div>
+                
+                <button class="btn btn-primary" id="pay-now-btn">
+                    <span class="btn-icon">💰</span> Complete Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="success-modal">
+        <div class="success-container">
+            <button class="success-close" id="success-close">×</button>
+            <div class="success-icon">✅</div>
+            <h2 class="success-title">Order Successful!</h2>
+            <p class="success-message">Your custom coffee has been ordered successfully.</p>
+            <div class="order-number">Order #: <span id="order-number">12345</span></div>
+            <p class="success-message">Your coffee will be ready in approximately 5-7 minutes.</p>
+            <button class="btn btn-primary" id="close-modal-btn">Done</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const navbar = document.getElementById('navbar');
+            const coffeeBase = document.getElementById('coffee-base');
+            const milkDairy = document.getElementById('milk-dairy');
+            const milkNondairy = document.getElementById('milk-nondairy');
+            const sweetener = document.getElementById('sweetener');
+            const flavor = document.getElementById('flavor');
+            const temperature = document.getElementById('temperature');
+            const iceOptions = document.getElementById('ice-options');
+            const ice = document.getElementById('ice');
+            const size = document.getElementById('size');
+            const strength = document.getElementById('strength');
+            const toppings = document.getElementById('toppings');
+            const customNotes = document.getElementById('custom-notes');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const saveCoffeeBtn = document.getElementById('save-coffee-btn');
+            const paymentOverlay = document.getElementById('payment-overlay');
+            const paymentClose = document.getElementById('payment-close');
+            const payNowBtn = document.getElementById('pay-now-btn');
+            const successModal = document.getElementById('success-modal');
+            const successClose = document.getElementById('success-close');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const orderNumber = document.getElementById('order-number');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const priceBreakdownItems = document.getElementById('price-breakdown-items');
+            const totalPrice = document.getElementById('total-price');
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            const headerBg = document.getElementById('header-bg');
+            const scrollToCustomize = document.getElementById('scroll-to-customize');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabNavigation = document.getElementById('tab-navigation');
+            const cartBtn = document.getElementById('cart-btn');
+            const cartCount = document.getElementById('cart-count');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const cartClose = document.getElementById('cart-close');
+            const cartItems = document.getElementById('cart-items');
+            const cartEmpty = document.getElementById('cart-empty');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const toast = document.getElementById('toast');
+            const formSections = document.querySelectorAll('.form-section');
+            const cardDetailsSection = document.getElementById('card-details-section');
+            
+            // Sliders
+            const sweetnessSlider = document.getElementById('sweetness-slider');
+            const sweetnessValue = document.getElementById('sweetness-value');
+            const flavorSlider = document.getElementById('flavor-slider');
+            const flavorValue = document.getElementById('flavor-value');
+            
+            // Coffee preview elements
+            const coffeeCup = document.querySelector('.coffee-cup');
+            const liquid = document.querySelector('.liquid');
+            const toppingElements = document.querySelectorAll('.topping');
+            const coffeeName = document.getElementById('coffee-name');
+            const coffeeDescription = document.getElementById('coffee-description');
+            const caloriesElement = document.getElementById('calories');
+            const caffeineElement = document.getElementById('caffeine');
+            const priceElement = document.getElementById('price');
+            
+            // Current selections
+            let currentSelections = {
+                base: '',
+                basePrice: 0,
+                milk: '',
+                milkPrice: 0,
+                sweetener: '',
+                sweetenerPrice: 0,
+                sweetnessLevel: 3,
+                flavor: '',
+                flavorPrice: 0,
+                flavorIntensity: 2,
+                temperature: '',
+                temperaturePrice: 0,
+                ice: '',
+                icePrice: 0,
+                size: '',
+                sizePrice: 0,
+                strength: '',
+                strengthPrice: 0,
+                toppings: [],
+                toppingsPrices: [],
+                notes: ''
+            };
+            
+            // Cart items
+            let cartItemsArray = [];
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                    tabNavigation.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('scrolled');
+                    tabNavigation.classList.remove('sticky');
+                }
+            });
+            
+            // Scroll to customize section
+            scrollToCustomize.addEventListener('click', function() {
+                document.querySelector('.customizer-container').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            
+            // Tab navigation - Show only one section at a time
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabBtns.forEach(tab => tab.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all sections
+                    formSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show only the selected section
+                    const sectionId = this.dataset.section;
+                    const section = document.getElementById(sectionId);
+                    
+                    if (section) {
+                        section.classList.add('active');
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            // Cart button
+            cartBtn.addEventListener('click', function() {
+                cartOverlay.classList.add('active');
+                updateCartDisplay();
+            });
+            
+            // Cart close
+            cartClose.addEventListener('click', function() {
+                cartOverlay.classList.remove('active');
+            });
+            
+            // Checkout button
+            checkoutBtn.addEventListener('click', function() {
+                if (cartItemsArray.length === 0) {
+                    showToast('Your cart is empty. Add some coffee first!');
+                    return;
+                }
+                
+                cartOverlay.classList.remove('active');
+                updatePaymentBreakdown();
+                paymentOverlay.classList.add('active');
+            });
+            
+            // Initialize selections
+            function initSelections() {
+                // Set default selections
+                selectOption(coffeeBase.children[0], 'base');
+                selectOption(milkDairy.children[0], 'milk-dairy');
+                selectOption(size.children[1], 'size');
+                selectOption(temperature.children[0], 'temperature');
+                selectOption(strength.children[0], 'strength');
+                
+                // Update UI based on defaults
+                updateCoffeePreview();
+                
+                // Set initial background
+                if (coffeeBase.children[0].dataset.bg) {
+                    headerBg.style.backgroundImage = `url('${coffeeBase.children[0].dataset.bg}')`;
+                }
+                
+                // Hide card details section initially
+                cardDetailsSection.style.display = 'none';
+            }
+            
+            // Handle option selection
+            function handleOptionSelection(container, selectionType, multiSelect = false) {
+                container.addEventListener('click', function(e) {
+                    const optionItem = e.target.closest('.option-item');
+                    if (!optionItem) return;
+                    
+                    if (multiSelect && selectionType === 'toppings') {
+                        optionItem.classList.toggle('selected');
+                        
+                        if (optionItem.classList.contains('selected')) {
+                            currentSelections.toppings.push(optionItem.dataset.value);
+                            currentSelections.toppingsPrices.push(parseFloat(optionItem.dataset.price) || 0);
+                        } else {
+                            const index = currentSelections.toppings.indexOf(optionItem.dataset.value);
+                            if (index > -1) {
+                                currentSelections.toppings.splice(index, 1);
+                                currentSelections.toppingsPrices.splice(index, 1);
+                            }
+                        }
+                    } else {
+                        // Remove selected class from all siblings
+                        Array.from(container.children).forEach(child => {
+                            child.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked element
+                        optionItem.classList.add('selected');
+                        
+                        // Update current selections
+                        selectOption(optionItem, selectionType);
+                        
+                        // Change background if it's a coffee base
+                        if (selectionType === 'base' && optionItem.dataset.bg) {
+                            headerBg.style.backgroundImage = `url('${optionItem.dataset.bg}')`;
+                        }
+                    }
+                    
+                    // Update coffee preview
+                    updateCoffeePreview();
+                });
+            }
+            
+            // Select option
+            function selectOption(element, type) {
+                if (!element) return;
+                
+                const value = element.dataset.value;
+                const price = parseFloat(element.dataset.price) || 0;
+                
+                switch (type) {
+                    case 'base':
+                        currentSelections.base = value;
+                        currentSelections.basePrice = price;
+                        break;
+                    case 'milk-dairy':
+                    case 'milk-nondairy':
+                        // Deselect the other milk type
+                        if (type === 'milk-dairy') {
+                            Array.from(milkNondairy.children).forEach(child => {
+                                child.classList.remove('selected');
+                            });
+                        } else {
+                            Array.from(milkDairy.children).forEach(child => {
+                                child.classList.remove('selected');
+                            });
+                        }
+                        currentSelections.milk = value;
+                        currentSelections.milkPrice = price;
+                        break;
+                    case 'sweetener':
+                        currentSelections.sweetener = value;
+                        currentSelections.sweetenerPrice = price;
+                        break;
+                    case 'flavor':
+                        currentSelections.flavor = value;
+                        currentSelections.flavorPrice = price;
+                        break;
+                    case 'temperature':
+                        currentSelections.temperature = value;
+                        currentSelections.temperaturePrice = price;
+                        // Show/hide ice options
+                        if (value === 'Iced' || value === 'Blended') {
+                            iceOptions.style.display = 'block';
+                            // Select default ice option
+                            if (!currentSelections.ice) {
+                                selectOption(ice.children[2], 'ice');
+                                ice.children[2].classList.add('selected');
+                            }
+                        } else {
+                            iceOptions.style.display = 'none';
+                            currentSelections.ice = '';
+                            currentSelections.icePrice = 0;
+                            // Deselect all ice options
+                            Array.from(ice.children).forEach(child => {
+                                child.classList.remove('selected');
+                            });
+                        }
+                        break;
+                    case 'ice':
+                        currentSelections.ice = value;
+                        currentSelections.icePrice = price;
+                        break;
+                    case 'size':
+                        currentSelections.size = value;
+                        currentSelections.sizePrice = price;
+                        break;
+                    case 'strength':
+                        currentSelections.strength = value;
+                        currentSelections.strengthPrice = price;
+                        break;
+                }
+            }
+            
+            // Update coffee preview
+            function updateCoffeePreview() {
+                // Update liquid color based on coffee type and milk
+                let liquidColor = '#6f4e37'; // Default coffee color
+                
+                if (currentSelections.base) {
+                    if (currentSelections.base === 'Espresso') {
+                        liquidColor = '#3a2718';
+                    } else if (currentSelections.base === 'Latte' || currentSelections.base === 'Cappuccino') {
+                        liquidColor = '#8c6e4a';
+                    } else if (currentSelections.base === 'Mocha') {
+                        liquidColor = '#5d3a1a';
+                    }
+                    
+                    if (currentSelections.milk && (currentSelections.milk.includes('Milk') || currentSelections.milk.includes('Half'))) {
+                        // Lighten the color for milk-based drinks
+                        liquidColor = lightenColor(liquidColor, 30);
+                    }
+                }
+                
+                // Update liquid color
+                liquid.style.backgroundColor = liquidColor;
+                
+                // Fill the cup based on selection
+                if (currentSelections.base) {
+                    liquid.classList.add('filled');
+                } else {
+                    liquid.classList.remove('filled');
+                }
+                
+                // Show/hide toppings
+                toppingElements.forEach(topping => {
+                    topping.style.opacity = '0';
+                });
+                
+                if (currentSelections.toppings && currentSelections.toppings.length > 0) {
+                    currentSelections.toppings.forEach(topping => {
+                        if (topping === 'Whipped Cream') {
+                            document.querySelector('.whipped-cream').style.opacity = '1';
+                        } else if (topping === 'Chocolate Powder') {
+                            document.querySelector('.chocolate-powder').style.opacity = '1';
+                        } else if (topping === 'Cinnamon Powder') {
+                            document.querySelector('.cinnamon-powder').style.opacity = '1';
+                        }
+                    });
+                }
+                
+                // Update coffee name and description
+                let name = '';
+                let description = '';
+                
+                if (currentSelections.size) name += currentSelections.size + ' ';
+                if (currentSelections.base) name += currentSelections.base;
+                
+                // Build description
+                description = 'A';
+                if (currentSelections.temperature) {
+                    description += ' ' + currentSelections.temperature.toLowerCase();
+                }
+                if (currentSelections.size) {
+                    description += ' ' + currentSelections.size.toLowerCase();
+                }
+                if (currentSelections.base) {
+                    description += ' ' + currentSelections.base.toLowerCase();
+                }
+                if (currentSelections.milk) {
+                    description += ' with ' + currentSelections.milk.toLowerCase();
+                }
+                if (currentSelections.flavor) {
+                    description += ', ' + currentSelections.flavor.toLowerCase() + ' flavor';
+                    if (currentSelections.flavorIntensity === 1) {
+                        description += ' (light)';
+                    } else if (currentSelections.flavorIntensity === 3) {
+                        description += ' (strong)';
+                    }
+                }
+                if (currentSelections.sweetener) {
+                    description += ', sweetened with ' + currentSelections.sweetener.toLowerCase();
+                    if (currentSelections.sweetnessLevel === 1) {
+                        description += ' (very light)';
+                    } else if (currentSelections.sweetnessLevel === 2) {
+                        description += ' (light)';
+                    } else if (currentSelections.sweetnessLevel === 4) {
+                        description += ' (extra)';
+                    } else if (currentSelections.sweetnessLevel === 5) {
+                        description += ' (very sweet)';
+                    }
+                }
+                if (currentSelections.strength && currentSelections.strength !== 'Regular') {
+                    description += ', ' + currentSelections.strength.toLowerCase() + ' strength';
+                }
+                if (currentSelections.ice) {
+                    description += ', ' + currentSelections.ice.toLowerCase();
+                }
+                if (currentSelections.toppings && currentSelections.toppings.length > 0) {
+                    description += ', topped with ' + currentSelections.toppings.join(', ').toLowerCase();
+                }
+                
+                // Update UI
+                coffeeName.textContent = name || 'Your Custom Coffee';
+                coffeeDescription.textContent = description || 'Select your preferences to create your perfect coffee.';
+                
+                // Calculate nutrition info (simplified estimates)
+                let calories = 0;
+                let caffeine = 0;
+                
+                // Base calories and caffeine
+                if (currentSelections.base === 'Espresso') {
+                    calories += 5;
+                    caffeine += 63;
+                } else if (currentSelections.base === 'Americano') {
+                    calories += 15;
+                    caffeine += 77;
+                } else if (currentSelections.base === 'Latte') {
+                    calories += 120;
+                    caffeine += 64;
+                } else if (currentSelections.base === 'Cappuccino') {
+                    calories += 110;
+                    caffeine += 63;
+                } else if (currentSelections.base === 'Mocha') {
+                    calories += 170;
+                    caffeine += 63;
+                } else if (currentSelections.base === 'Cold Brew') {
+                    calories += 5;
+                    caffeine += 155;
+                } else if (currentSelections.base === 'Macchiato') {
+                    calories += 85;
+                    caffeine += 85;
+                }
+                
+                // Size multiplier
+                let sizeMultiplier = 1;
+                if (currentSelections.size === 'Medium') {
+                    sizeMultiplier = 1.5;
+                } else if (currentSelections.size === 'Large') {
+                    sizeMultiplier = 2;
+                }
+                
+                calories *= sizeMultiplier;
+                caffeine *= sizeMultiplier;
+                
+                // Milk
+                if (currentSelections.milk) {
+                    if (currentSelections.milk === 'Whole Milk') {
+                        calories += 60 * sizeMultiplier;
+                    } else if (currentSelections.milk === 'Skim Milk') {
+                        calories += 30 * sizeMultiplier;
+                    } else if (currentSelections.milk === '2% Milk') {
+                        calories += 45 * sizeMultiplier;
+                    } else if (currentSelections.milk === 'Half & Half') {
+                        calories += 80 * sizeMultiplier;
+                    } else if (currentSelections.milk === 'Almond Milk') {
+                        calories += 30 * sizeMultiplier;
+                    } else if (currentSelections.milk === 'Soy Milk') {
+                        calories += 50 * sizeMultiplier;
+                    } else if (currentSelections.milk === 'Oat Milk') {
+                        calories += 70 * sizeMultiplier;
+                    } else if (currentSelections.milk === 'Coconut Milk') {
+                        calories += 45 * sizeMultiplier;
+                    }
+                }
+                
+                // Sweetener
+                if (currentSelections.sweetener) {
+                    if (currentSelections.sweetener === 'Sugar' || currentSelections.sweetener === 'Brown Sugar') {
+                        calories += 16 * currentSelections.sweetnessLevel;
+                    } else if (currentSelections.sweetener === 'Honey' || currentSelections.sweetener === 'Agave Syrup') {
+                        calories += 21 * currentSelections.sweetnessLevel;
+                    }
+                    // Stevia and sugar-free options don't add calories
+                }
+                
+                // Flavor
+                if (currentSelections.flavor && !currentSelections.flavor.includes('Sugar-Free')) {
+                    calories += 20 * currentSelections.flavorIntensity;
+                }
+                
+                // Strength
+                if (currentSelections.strength === 'Strong') {
+                    caffeine *= 1.5;
+                } else if (currentSelections.strength === 'Extra Shot') {
+                    caffeine += 63;
+                    calories += 5;
+                } else if (currentSelections.strength === 'Double Shot') {
+                    caffeine += 126;
+                    calories += 10;
+                }
+                
+                // Toppings
+                if (currentSelections.toppings) {
+                    currentSelections.toppings.forEach(topping => {
+                        if (topping === 'Whipped Cream') {
+                            calories += 50;
+                        } else if (topping === 'Chocolate Powder' || topping === 'Shaved Chocolate') {
+                            calories += 15;
+                        } else if (topping === 'Cookie Crumbs') {
+                            calories += 30;
+                        } else if (topping === 'Marshmallows') {
+                            calories += 25;
+                        }
+                    });
+                }
+                
+                // Calculate total price
+                let totalPrice = 0;
+                totalPrice += currentSelections.basePrice || 0;
+                totalPrice += currentSelections.milkPrice || 0;
+                totalPrice += currentSelections.sweetenerPrice || 0;
+                totalPrice += currentSelections.flavorPrice || 0;
+                totalPrice += currentSelections.temperaturePrice || 0;
+                totalPrice += currentSelections.icePrice || 0;
+                totalPrice += currentSelections.sizePrice || 0;
+                totalPrice += currentSelections.strengthPrice || 0;
+                
+                // Add toppings prices
+                if (currentSelections.toppingsPrices && currentSelections.toppingsPrices.length > 0) {
+                    currentSelections.toppingsPrices.forEach(price => {
+                        totalPrice += price;
+                    });
+                }
+                
+                // Update nutrition info
+                caloriesElement.textContent = Math.round(calories);
+                caffeineElement.textContent = Math.round(caffeine);
+                priceElement.textContent = '₹' + totalPrice.toFixed(0);
+            }
+            
+            // Add to cart
+            function addToCart() {
+                if (!currentSelections.base) {
+                    showToast('Please select a coffee base first');
+                    return;
+                }
+                
+                // Create a cart item from current selections
+                const cartItem = {
+                    id: Date.now(),
+                    name: coffeeName.textContent,
+                    description: coffeeDescription.textContent,
+                    price: parseFloat(priceElement.textContent.replace('₹', '')),
+                    selections: { ...currentSelections }
+                };
+                
+                // Add to cart array
+                cartItemsArray.push(cartItem);
+                
+                // Update cart count
+                cartCount.textContent = cartItemsArray.length;
+                
+                // Show toast notification
+                showToast('Added to cart!');
+            }
+            
+            // Update cart display
+            function updateCartDisplay() {
+                if (cartItemsArray.length === 0) {
+                    cartItems.style.display = 'none';
+                    cartEmpty.style.display = 'block';
+                    cartTotal.textContent = '₹0';
+                    return;
+                }
+                
+                cartItems.style.display = 'flex';
+                cartEmpty.style.display = 'none';
+                
+                // Clear cart items
+                cartItems.innerHTML = '';
+                
+                // Calculate total
+                let total = 0;
+                
+                // Add items to cart
+                cartItemsArray.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="https://images.unsplash.com/photo-${item.selections.base === 'Espresso' ? '1514432324607-a09d9b4aefdd' : 
+                                item.selections.base === 'Latte' ? '1570968915860-54d5c301fa9f' : 
+                                item.selections.base === 'Cappuccino' ? '1534687941688-13b0d0449b2b' : 
+                                item.selections.base === 'Cold Brew' ? '1517701604599-bb29b565090c' : 
+                                item.selections.base === 'Mocha' ? '1572286258217-215cf8e8e48e' : 
+                                '1495474472287-4d71bcdd2085'}?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="cart-item-img" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-description">${item.description}</div>
+                            <div class="cart-item-price">₹${item.price.toFixed(0)}</div>
+                        </div>
+                        <button class="cart-item-remove" data-id="${item.id}">×</button>
+                    `;
+                    
+                    cartItems.appendChild(cartItemElement);
+                    total += item.price;
+                });
+                
+                // Update total
+                cartTotal.textContent = '₹' + total.toFixed(0);
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.cart-item-remove').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemId = parseInt(this.dataset.id);
+                        removeFromCart(itemId);
+                    });
+                });
+            }
+            
+            // Remove from cart
+            function removeFromCart(itemId) {
+                cartItemsArray = cartItemsArray.filter(item => item.id !== itemId);
+                cartCount.textContent = cartItemsArray.length;
+                updateCartDisplay();
+            }
+            
+            // Update payment breakdown
+            function updatePaymentBreakdown() {
+                priceBreakdownItems.innerHTML = '';
+                let total = 0;
+                
+                cartItemsArray.forEach(item => {
+                    addPriceItem(item.name, item.price);
+                    total += item.price;
+                });
+                
+                // Update total
+                totalPrice.textContent = '₹' + total.toFixed(0);
+            }
+            
+            // Add price item to breakdown
+            function addPriceItem(name, price) {
+                const priceItem = document.createElement('div');
+                priceItem.className = 'price-item';
+                priceItem.innerHTML = `
+                    <div class="price-item-name">${name}</div>
+                    <div class="price-item-value">₹${price.toFixed(0)}</div>
+                `;
+                priceBreakdownItems.appendChild(priceItem);
+            }
+            
+            // Show toast notification
+            function showToast(message) {
+                toast.textContent = message;
+                toast.classList.add('active');
+                
+                setTimeout(() => {
+                    toast.classList.remove('active');
+                }, 3000);
+            }
+            
+            // Helper function to lighten a color
+            function lightenColor(color, percent) {
+                const num = parseInt(color.replace('#', ''), 16);
+                const amt = Math.round(2.55 * percent);
+                const R = (num >> 16) + amt;
+                const G = (num >> 8 & 0x00FF) + amt;
+                const B = (num & 0x0000FF) + amt;
+                
+                return '#' + (
+                    0x1000000 +
+                    (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                    (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                    (B < 255 ? B < 1 ? 0 : B : 255)
+                ).toString(16).slice(1);
+            }
+            
+            // Update sweetness label
+            function updateSweetnessLabel() {
+                const value = sweetnessSlider.value;
+                let label = '';
+                
+                switch (parseInt(value)) {
+                    case 1:
+                        label = 'Very Light';
+                        break;
+                    case 2:
+                        label = 'Light';
+                        break;
+                    case 3:
+                        label = 'Medium';
+                        break;
+                    case 4:
+                        label = 'Extra';
+                        break;
+                    case 5:
+                        label = 'Very Sweet';
+                        break;
+                }
+                
+                sweetnessValue.textContent = label;
+                currentSelections.sweetnessLevel = parseInt(value);
+                updateCoffeePreview();
+            }
+            
+            // Update flavor label
+            function updateFlavorLabel() {
+                const value = flavorSlider.value;
+                let label = '';
+                
+                switch (parseInt(value)) {
+                    case 1:
+                        label = 'Light';
+                        break;
+                    case 2:
+                        label = 'Regular';
+                        break;
+                    case 3:
+                        label = 'Strong';
+                        break;
+                }
+                
+                flavorValue.textContent = label;
+                currentSelections.flavorIntensity = parseInt(value);
+                updateCoffeePreview();
+            }
+            
+            // Payment option selection
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Show/hide card details section based on payment method
+                    const method = this.dataset.method;
+                    if (method === 'Credit Card' || method === 'Debit Card') {
+                        cardDetailsSection.style.display = 'block';
+                    } else {
+                        cardDetailsSection.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Process payment
+            function processPayment() {
+                // Validate required fields
+                const customerName = document.getElementById('customer-name');
+                const customerEmail = document.getElementById('customer-email');
+                const customerPhone = document.getElementById('customer-phone');
+                
+                if (!customerName.value || !customerEmail.value || !customerPhone.value) {
+                    showToast('Please fill in all required customer information');
+                    return;
+                }
+                
+                // Check if payment method is selected
+                const selectedPayment = document.querySelector('.payment-option.selected');
+                if (!selectedPayment) {
+                    showToast('Please select a payment method');
+                    return;
+                }
+                
+                // Validate card details if credit/debit card is selected
+                const paymentMethod = selectedPayment.dataset.method;
+                if ((paymentMethod === 'Credit Card' || paymentMethod === 'Debit Card') && cardDetailsSection.style.display !== 'none') {
+                    const cardNumber = document.getElementById('card-number');
+                    const cardExpiry = document.getElementById('card-expiry');
+                    const cardCvv = document.getElementById('card-cvv');
+                    const cardName = document.getElementById('card-name');
+                    
+                    if (!cardNumber.value || !cardExpiry.value || !cardCvv.value || !cardName.value) {
+                        showToast('Please fill in all card details');
+                        return;
+                    }
+                }
+                
+                // Show loading spinner
+                loadingSpinner.style.display = 'block';
+                payNowBtn.disabled = true;
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    loadingSpinner.style.display = 'none';
+                    payNowBtn.disabled = false;
+                    
+                    // Generate random order number
+                    const randomOrderNum = Math.floor(10000 + Math.random() * 90000);
+                    orderNumber.textContent = randomOrderNum;
+                    
+                    // Hide payment overlay and show success modal
+                    paymentOverlay.classList.remove('active');
+                    successModal.classList.add('active');
+                    
+                    // Clear cart
+                    cartItemsArray = [];
+                    cartCount.textContent = '0';
+                }, 2000);
+            }
+            
+            // Event listeners
+            sweetnessSlider.addEventListener('input', updateSweetnessLabel);
+            flavorSlider.addEventListener('input', updateFlavorLabel);
+            
+            customNotes.addEventListener('input', function() {
+                currentSelections.notes = this.value;
+            });
+            
+            addToCartBtn.addEventListener('click', addToCart);
+            
+            payNowBtn.addEventListener('click', processPayment);
+            
+            paymentClose.addEventListener('click', function() {
+                paymentOverlay.classList.remove('active');
+            });
+            
+            successClose.addEventListener('click', function() {
+                successModal.classList.remove('active');
+            });
+            
+            closeModalBtn.addEventListener('click', function() {
+                successModal.classList.remove('active');
+            });
+            
+            // Initialize option selection handlers
+            handleOptionSelection(coffeeBase, 'base');
+            handleOptionSelection(milkDairy, 'milk-dairy');
+            handleOptionSelection(milkNondairy, 'milk-nondairy');
+            handleOptionSelection(sweetener, 'sweetener');
+            handleOptionSelection(flavor, 'flavor');
+            handleOptionSelection(temperature, 'temperature');
+            handleOptionSelection(ice, 'ice');
+            handleOptionSelection(size, 'size');
+            handleOptionSelection(strength, 'strength');
+            handleOptionSelection(toppings, 'toppings', true);
+            
+            // Initialize
+            initSelections();
+        });
+    </script>
+</body>
+</html>

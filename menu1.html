@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Aroma | Traditional Cuisine</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: hsl(36, 30%, 96%);
+            color: hsl(30, 10%, 15%);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            width: 100%;
+            background-color: hsl(36, 30%, 96%);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: hsla(36, 30%, 96%, 0.95);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+            color: hsl(30, 10%, 15%);
+            font-family: Georgia, serif;
+        }
+
+        .main-nav {
+            display: none;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: hsl(30, 10%, 15%);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .main-nav a:hover {
+            color: hsl(28, 40%, 40%);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cart-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(30, 10%, 85%);
+            background-color: transparent;
+            color: hsl(30, 10%, 15%);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .cart-btn:hover {
+            background-color: hsl(30, 10%, 95%);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: hsl(28, 40%, 40%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(30, 10%, 85%);
+            background-color: transparent;
+            color: hsl(30, 10%, 15%);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .menu-btn:hover {
+            background-color: hsl(30, 10%, 95%);
+        }
+
+        /* Mobile navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: hsl(36, 30%, 96%);
+            padding: 24px;
+            z-index: 30;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.open {
+            transform: translateY(0);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 8px;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 12px;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: hsl(30, 10%, 15%);
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .mobile-nav a:hover {
+            background-color: hsl(28, 40%, 85%);
+        }
+
+        .mobile-nav .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: hsl(30, 10%, 15%);
+        }
+
+        /* Main content */
+        main {
+            flex: 1;
+            padding: 32px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            margin-bottom: 32px;
+            color: hsl(30, 5%, 40%);
+        }
+
+        /* Menu tabs */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(30, 10%, 85%);
+            background-color: transparent;
+            color: hsl(30, 10%, 15%);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background-color: hsl(30, 10%, 95%);
+        }
+
+        .tab-btn.active {
+            background-color: hsl(28, 40%, 40%);
+            color: white;
+            border-color: hsl(28, 40%, 40%);
+        }
+
+        /* Menu grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Menu item card */
+        .menu-item {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .menu-item-image {
+            transform: scale(1.05);
+        }
+
+        .menu-item-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .menu-item-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .menu-item-price {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 0.25rem;
+            background-color: hsla(28, 40%, 40%, 0.1);
+            border: 1px solid hsl(30, 10%, 85%);
+            color: hsl(30, 10%, 15%);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .menu-item-description {
+            color: hsl(30, 5%, 40%);
+            margin-bottom: 16px;
+            font-size: 0.875rem;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 8px 16px;
+            border-radius: 0.5rem;
+            border: none;
+            background-color: hsl(28, 40%, 40%);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: hsl(28, 40%, 35%);
+        }
+
+        /* Cart overlay */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+            display: none;
+        }
+
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-out;
+            z-index: 51;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid hsl(30, 10%, 85%);
+        }
+
+        .cart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: hsl(30, 5%, 40%);
+        }
+
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            color: hsl(30, 5%, 40%);
+            text-align: center;
+        }
+
+        .cart-empty svg {
+            margin-bottom: 16px;
+            width: 64px;
+            height: 64px;
+        }
+
+        .continue-shopping-btn {
+            margin-top: 16px;
+            padding: 8px 16px;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(30, 10%, 85%);
+            background-color: transparent;
+            color: hsl(30, 10%, 15%);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .continue-shopping-btn:hover {
+            background-color: hsl(30, 10%, 95%);
+        }
+
+        .cart-items {
+            margin-bottom: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid hsl(30, 10%, 90%);
+        }
+
+        .cart-item-image {
+            width: 64px;
+            height: 64px;
+            border-radius: 0.5rem;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            color: hsl(30, 5%, 40%);
+            font-size: 0.875rem;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantity-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 0.25rem;
+            border: 1px solid hsl(30, 10%, 85%);
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .quantity-btn:hover {
+            background-color: hsl(30, 10%, 95%);
+        }
+
+        .quantity-value {
+            width: 20px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: hsl(30, 5%, 40%);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .remove-btn:hover {
+            color: hsl(0, 84%, 60%);
+        }
+
+        .cart-item-total {
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .cart-footer {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid hsl(30, 10%, 85%);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: none;
+            background-color: hsl(28, 40%, 40%);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .checkout-btn:hover {
+            background-color: hsl(28, 40%, 35%);
+        }
+
+        .clear-cart-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(30, 10%, 85%);
+            background-color: transparent;
+            color: hsl(30, 10%, 15%);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .clear-cart-btn:hover {
+            background-color: hsl(30, 10%, 95%);
+        }
+
+        /* Flying image animation */
+        .flying-image {
+            position: fixed;
+            z-index: 9999;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: hsl(28, 40%, 85%);
+            padding: 48px 0;
+            margin-top: 48px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section p, .footer-section address {
+            color: hsl(30, 5%, 40%);
+            margin-bottom: 16px;
+            font-style: normal;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: hsla(30, 10%, 15%, 0.1);
+            color: hsl(30, 10%, 15%);
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .social-link:hover {
+            background-color: hsl(28, 40%, 40%);
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            margin-top: 24px;
+            border-top: 1px solid hsla(30, 10%, 15%, 0.1);
+            color: hsl(30, 5%, 40%);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            .main-nav {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Animations */
+        .slide-in {
+            transform: translateX(0) !important;
+        }
+
+        /* Payment Interface Styles */
+        .payment-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .payment-overlay.active {
+            opacity: 1;
+            display: flex;
+        }
+
+        .payment-container {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            overflow: hidden;
+        }
+
+        .payment-overlay.active .payment-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .payment-header {
+            background: linear-gradient(135deg, #e07b39 0%, #c85000 100%);
+            color: white;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .payment-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .payment-header p {
+            margin: 8px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .payment-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .payment-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .payment-body {
+            padding: 20px;
+        }
+
+        .payment-amount {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(232, 170, 66, 0.1);
+            border-radius: 8px;
+            border: 1px dashed #e8aa42;
+        }
+
+        .payment-amount h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .payment-amount p {
+            margin: 5px 0 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #c85000;
+        }
+
+        .payment-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .payment-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .payment-tab.active {
+            color: #c85000;
+        }
+
+        .payment-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #c85000;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .payment-content {
+            display: none;
+        }
+
+        .payment-content.active {
+            display: block;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .payment-option:hover {
+            border-color: #c85000;
+            background-color: rgba(200, 80, 0, 0.05);
+        }
+
+        .payment-option.selected {
+            border-color: #c85000;
+            background-color: rgba(200, 80, 0, 0.05);
+        }
+
+        .payment-option-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            background-color: rgba(200, 80, 0, 0.1);
+            border-radius: 8px;
+            color: #c85000;
+        }
+
+        .payment-option-details {
+            flex: 1;
+        }
+
+        .payment-option-title {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .payment-option-description {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .payment-option-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            margin-left: 12px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .payment-option.selected .payment-option-radio {
+            border-color: #c85000;
+        }
+
+        .payment-option.selected .payment-option-radio::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            background-color: #c85000;
+            border-radius: 50%;
+        }
+
+        .qr-code-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .qr-code {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-code-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .qr-code-timer {
+            margin-top: 10px;
+            font-weight: 500;
+            color: #c85000;
+        }
+
+        .card-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #c85000;
+        }
+
+        .card-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .card-col {
+            flex: 1;
+        }
+
+        .upi-form {
+            margin-top: 20px;
+        }
+
+        .upi-input-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .upi-input-container:focus-within {
+            border-color: #c85000;
+        }
+
+        .upi-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .upi-input:focus {
+            outline: none;
+        }
+
+        .upi-suffix {
+            padding: 12px;
+            background-color: #f5f5f5;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .payment-footer {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #e07b39 0%, #c85000 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200, 80, 0, 0.2);
+        }
+
+        .payment-security {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .payment-security svg {
+            margin-right: 5px;
+            color: #c85000;
+        }
+
+        .payment-success {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(39, 174, 96, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #27ae60;
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .success-message {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .success-details {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .success-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .success-detail-label {
+            color: #666;
+        }
+
+        .success-detail-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .success-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: #27ae60;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .success-button:hover {
+            background-color: #219653;
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo-container">
+                    <img src="LOGO ANCIENT AROMA.jpg" alt="Ancient Aroma Logo" class="logo-image" />
+                    <span class="logo-text">Ancient Aroma</span>
+                </a>
+                
+                <div class="header-actions">
+                    <button class="cart-btn" id="cart-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"></circle>
+                            <circle cx="19" cy="21" r="1"></circle>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                        </svg>
+                        <span class="cart-count" id="cart-count" style="display: none;">0</span>
+                    </button>
+                    <button class="menu-btn" id="menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="12" x2="20" y2="12"></line>
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="4" y1="18" x2="20" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="close-btn" id="close-nav">x</button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#reservations">Reservations</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Our Menu</h1>
+            <p class="page-subtitle">Discover the authentic flavors of Ancient Aroma</p>
+
+            <div class="menu-tabs" id="menu-tabs">
+                <!-- Menu tabs will be inserted here by JavaScript -->
+            </div>
+
+            <div class="menu-grid" id="menu-grid">
+                <!-- Menu items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ancient Aroma</h3>
+                    <p>Experience the authentic flavors of traditional cuisine, prepared with love and served with care.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <ul>
+                        <li>Monday - Friday: 11:00 AM - 10:00 PM</li>
+                        <li>Saturday - Sunday: 10:00 AM - 11:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <address>
+                        123 Culinary Street<br>
+                        Flavor Town, FT 12345<br>
+                        Phone: (123) 456-7890<br>
+                        Email: info@ancientaroma.com
+                    </address>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Ancient Aroma. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-container" id="cart-container">
+            <div class="cart-header">
+                <h2 class="cart-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                    Your Cart
+                </h2>
+                <button class="cart-close" id="cart-close">&times;</button>
+            </div>
+            <div id="cart-content">
+                <!-- Cart content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Overlay -->
+    <div class="payment-overlay" id="payment-overlay">
+        <div class="payment-container" id="payment-container">
+            <div class="payment-header">
+                <h2>Complete Your Payment</h2>
+                <p>Secure and hassle-free payment options</p>
+                <button class="payment-close" id="payment-close">×</button>
+            </div>
+            
+            <div class="payment-body">
+                <div class="payment-amount">
+                    <h3>Total Amount</h3>
+                    <p id="payment-total-amount">₹0.00</p>
+                </div>
+                
+                <div class="payment-tabs">
+                    <div class="payment-tab active" data-tab="qr">QR Code</div>
+                    <div class="payment-tab" data-tab="upi">UPI</div>
+                    <div class="payment-tab" data-tab="card">Card</div>
+                    <div class="payment-tab" data-tab="cod">Cash</div>
+                </div>
+                
+                <div class="payment-content active" id="qr-content">
+                    <div class="qr-code-container">
+                        <div class="qr-code">
+                        <img src="qrr.jpg" alt="">
+                        </div>
+                        <div class="qr-code-info">
+                            Scan with any UPI app to pay
+                        </div>
+                        <div class="qr-code-timer">
+                            Valid for: <span id="qr-timer">05:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option selected" data-option="paytm">
+                            <div class="payment-option-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="M12 12h.01"></path>
+                                </svg>
+                            </div>
+                            <div class="payment-option-details">
+                                <div class="payment-option-title">Paytm</div>
+                                <div class="payment-option-description">Scan with Paytm app</div>
+                            </div>
+                            <div class="payment-option-radio"></div>
+                        </div>
+                        
+                        <div class="payment-option" data-option="gpay">
+                            <div class="payment-option-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="M12 12h.01"></path>
+                                </svg>
+                            </div>
+                            <div class="payment-option-details">
+                                <div class="payment-option-title">Google Pay</div>
+                                <div class="payment-option-description">Scan with Google Pay app</div>
+                            </div>
+                            <div class="payment-option-radio"></div>
+                        </div>
+                        
+                        <div class="payment-option" data-option="phonepe">
+                            <div class="payment-option-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="M12 12h.01"></path>
+                                </svg>
+                            </div>
+                            <div class="payment-option-details">
+                                <div class="payment-option-title">PhonePe</div>
+                                <div class="payment-option-description">Scan with PhonePe app</div>
+                            </div>
+                            <div class="payment-option-radio"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-content" id="upi-content">
+                    <div class="upi-form">
+                        <div class="form-group">
+                            <label for="upi-id">Enter your UPI ID</label>
+                            <div class="upi-input-container">
+                                <input type="text" id="upi-id" class="upi-input" placeholder="yourname">
+                                <span class="upi-suffix">@upi</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option selected" data-option="upi-option">
+                            <div class="payment-option-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-7h-2c0-1-1.5-1.5-1.5-1.5"></path>
+                                </svg>
+                            </div>
+                            <div class="payment-option-details">
+                                <div class="payment-option-title">Pay via UPI</div>
+                                <div class="payment-option-description">Direct bank transfer using UPI</div>
+                            </div>
+                            <div class="payment-option-radio"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-content" id="card-content">
+                    <div class="card-form">
+                        <div class="form-group">
+                            <label for="card-name">Cardholder Name</label>
+                            <input type="text" id="card-name" class="form-control" placeholder="Rajesh Kumar">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="card-row">
+                            <div class="card-col">
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry Date</label>
+                                    <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
+                                </div>
+                            </div>
+                            <div class="card-col">
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" class="form-control" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-content" id="cod-content">
+                    <div class="payment-options">
+                        <div class="payment-option selected" data-option="cod">
+                            <div class="payment-option-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                    <path d="M6 12h.01M18 12h.01"></path>
+                                </svg>
+                            </div>
+                            <div class="payment-option-details">
+                                <div class="payment-option-title">Cash on Delivery</div>
+                                <div class="payment-option-description">Pay when your order arrives</div>
+                            </div>
+                            <div class="payment-option-radio"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-footer">
+                <button class="pay-button" id="pay-button">
+                    <span id="pay-button-text">Pay Now</span>
+                </button>
+                <div class="payment-security">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    Secure payment powered by Ancient Aroma
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu items data
+        const menuItems = [
+        {
+          "id": 1,
+          "name": "Flat White",
+          "description": "Velvety smooth espresso topped with steamed milk, perfect for a balanced coffee experience.",
+          "price": 370,
+          "image": "fc.jpg",
+          "category": "Espresso Bar"
+        },
+        {
+          "id": 2,
+          "name": "Caramel Macchiato",
+          "description": "Espresso layered with vanilla syrup, milk, and a rich caramel drizzle.",
+          "price": 430,
+          "image": "cc.jpg",
+          "category": "Espresso Bar"
+        },
+        {
+          "id": 3,
+          "name": "Mocha",
+          "description": "A cozy blend of chocolate, espresso, and steamed milk topped with whipped cream.",
+          "price": 410,
+          "image": "mc.jpg",
+          "category": "Espresso Bar"
+        },
+        {
+          "id": 4,
+          "name": "Hazelnut Coffee",
+          "description": "Nutty and aromatic espresso with hazelnut flavor and steamed milk.",
+          "price": 390,
+          "image": "hc.jpg",
+          "category": "Espresso Bar"
+        },
+        {
+          "id": 5,
+          "name": "Cappuccino",
+          "description": "Classic Italian-style coffee with a bold espresso base and a thick foam cap.",
+          "price": 350,
+          "image": "ca.jpg",
+          "category": "Espresso Bar"
+        },
+        {
+          "id": 6,
+          "name": "Americano",
+          "description": "Rich espresso diluted with hot water for a smooth, bold flavor.",
+          "price":   "Rich espresso diluted with hot water for a smooth, bold flavor.",
+          "price": 310,
+          "image": "ac.jpg",
+          "category": "Espresso Bar"
+        },
+        {
+          "id": 7,
+          "name": "Classic Burger",
+          "description": "Juicy beef patty with lettuce, tomato, and our special sauce on a toasted bun.",
+          "price": 1080,
+          "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "category": "Western Cuisine"
+        },
+        {
+          "id": 8,
+          "name": "Margherita Pizza",
+          "description": "Traditional pizza with tomato sauce, fresh mozzarella, and basil leaves.",
+          "price": 1250,
+          "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "category": "Western Cuisine"
+        },
+        {
+          "id": 9,
+          "name": "Caesar Salad",
+          "description": "Crisp romaine lettuce with Caesar dressing, croutons, and parmesan cheese.",
+          "price": 830,
+          "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "category": "Starters"
+        },
+        {
+          "id": 10,
+          "name": "Grilled Salmon",
+          "description": "Fresh salmon fillet grilled to perfection, served with seasonal vegetables.",
+          "price": 1580,
+          "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "category": "Western Cuisine"
+        },
+        {
+          "id": 11,
+          "name": "Pasta Carbonara",
+          "description": "Creamy pasta with pancetta, parmesan, and freshly ground black pepper.",
+          "price": 1330,
+          "image": "https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "category": "Western Cuisine"
+        },
+        {
+          "id": 12,
+          "name": "Green Tea",
+          "description": "Refreshing and antioxidant-rich tea with a clean, earthy flavor.",
+          "price": 270,
+          "image": "gt.jpg",
+          "category": "Teas"
+        },
+        {
+          "id": 13,
+          "name": "Chamomile Tea",
+          "description": "Soothing herbal tea with calming floral notes, perfect for relaxing.",
+          "price": 290,
+          "image": "ct.jpg",
+          "category": "Teas"
+        },
+        {
+          "id": 14,
+          "name": "Lavender Tea",
+          "description": "Aromatic tea with hints of lavender, known for its relaxing properties.",
+          "price": 310,
+          "image": "lt.jpg",
+          "category": "Teas"
+        },
+        {
+          "id": 15,
+          "name": "Peppermint Tea",
+          "description": "Cool and minty herbal infusion to refresh and soothe the senses.",
+          "price": 290,
+          "image": "pt.jpg",
+          "category": "Teas"
+        },
+        {
+          "id": 16,
+          "name": "Lemon Tea",
+          "description": "Citrusy and tangy tea blend perfect for a refreshing afternoon sip.",
+          "price": 310,
+          "image": "lt.jpg",
+          "category": "Teas"
+        },
+        {
+          "id": 17,
+          "name": "Chocolate Lava Cake",
+          "description": "Warm chocolate cake with a gooey molten center, served with vanilla ice cream.",
+          "price": 670,
+          "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          "category": "Desserts"
+        },
+        {
+          "id": 18,
+          "name": "Mango Coconut Delight",
+          "description": "Tropical mango and creamy coconut dessert with a refreshing finish.",
+          "price": 580,
+          "image": "mcc.jpg",
+          "category": "Desserts"
+        },
+        {
+          "id": 19,
+          "name": "Brownie Cheesecake",
+          "description": "Decadent fusion of rich brownie and creamy cheesecake layers.",
+          "price": 620,
+          "image": "bc.jpg",
+          "category": "Desserts"
+        },
+        {
+          "id": 20,
+          "name": "Choco Lava",
+          "description": "Molten chocolate-filled cake for intense cocoa indulgence.",
+          "price": 670,
+          "image": "ccc.jpg",
+          "category": "Desserts"
+        }
+      ];
+
+        // Cart state
+        let cartItems = [];
+
+        // DOM elements
+        const header = document.getElementById('header');
+        const menuButton = document.getElementById('menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+        const closeNavButton = document.getElementById('close-nav');
+        const menuTabs = document.getElementById('menu-tabs');
+        const menuGrid = document.getElementById('menu-grid');
+        const cartButton = document.getElementById('cart-button');
+        const cartCount = document.getElementById('cart-count');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartContainer = document.getElementById('cart-container');
+        const cartClose = document.getElementById('cart-close');
+        const cartContent = document.getElementById('cart-content');
+        const currentYear = document.getElementById('current-year');
+        const paymentOverlay = document.getElementById('payment-overlay');
+        const paymentContainer = document.getElementById('payment-container');
+        const paymentClose = document.getElementById('payment-close');
+        const paymentTotalAmount = document.getElementById('payment-total-amount');
+        const payButton = document.getElementById('pay-button');
+        const payButtonText = document.getElementById('pay-button-text');
+        const qrTimer = document.getElementById('qr-timer');
+
+        // Set current year in footer
+        currentYear.textContent = new Date().getFullYear();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile navigation
+        menuButton.addEventListener('click', () => {
+            mobileNav.classList.add('open');
+        });
+
+        closeNavButton.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+        });
+
+        // Get unique categories from menu items
+        function getCategories() {
+            const categories = ['All'];
+            menuItems.forEach(item => {
+                if (!categories.includes(item.category)) {
+                    categories.push(item.category);
+                }
+            });
+            return categories;
+        }
+
+        // Render menu tabs
+        function renderMenuTabs() {
+            const categories = getCategories();
+            menuTabs.innerHTML = '';
+            
+            categories.forEach(category => {
+                const tabButton = document.createElement('button');
+                tabButton.className = 'tab-btn';
+                tabButton.textContent = category;
+                if (category === 'All') {
+                    tabButton.classList.add('active');
+                }
+                tabButton.dataset.category = category;
+                menuTabs.appendChild(tabButton);
+            });
+
+            // Add event listeners to tab buttons
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // Filter menu items
+                    filterMenuItems(this.dataset.category);
+                });
+            });
+        }
+
+        // Filter menu items by category
+        function filterMenuItems(category) {
+            const filteredItems = category === 'All' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+            renderMenuItems(filteredItems);
+        }
+
+        // Render menu items
+        function renderMenuItems(items) {
+            menuGrid.innerHTML = '';
+            
+            items.forEach(item => {
+                const menuItemElement = document.createElement('div');
+                menuItemElement.className = 'menu-item';
+                menuItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <h3 class="menu-item-title">${item.name}</h3>
+                            <span class="menu-item-price">₹${item.price.toFixed(2)}</span>
+                        </div>
+                        <p class="menu-item-description">${item.description}</p>
+                        <button class="add-to-cart-btn" data-id="${item.id}">Add to Cart</button>
+                    </div>
+                `;
+                menuGrid.appendChild(menuItemElement);
+            });
+
+            // Add event listeners to "Add to Cart" buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    const menuItem = menuItems.find(item => item.id === itemId);
+                    
+                    // Get the position of the clicked button and the image
+                    const buttonRect = this.getBoundingClientRect();
+                    const imageElement = this.closest('.menu-item').querySelector('.menu-item-image');
+                    
+                    // Create flying image animation
+                    createFlyingImage(imageElement, buttonRect);
+                    
+                    // Add item to cart
+                    addToCart(itemId);
+                });
+            });
+        }
+
+        // Create flying image animation
+        function createFlyingImage(imageElement, startRect) {
+            // Get the cart button position (destination)
+            const cartButtonRect = cartButton.getBoundingClientRect();
+            
+            // Create a new image element for the animation
+            const flyingImg = document.createElement('img');
+            flyingImg.src = imageElement.src;
+            flyingImg.className = 'flying-image';
+            flyingImg.style.top = `${startRect.top}px`;
+            flyingImg.style.left = `${startRect.left + startRect.width/2 - 25}px`; // Center horizontally
+            flyingImg.style.opacity = '1';
+            flyingImg.style.transform = 'scale(1)';
+            
+            // Add to the document
+            document.body.appendChild(flyingImg);
+            
+            // Force a reflow to ensure the initial state is applied
+            flyingImg.offsetWidth;
+            
+            // Set the destination position
+            flyingImg.style.top = `${cartButtonRect.top}px`;
+            flyingImg.style.left = `${cartButtonRect.left}px`;
+            flyingImg.style.opacity = '0.2';
+            flyingImg.style.transform = 'scale(0.3)';
+            
+            // Remove the element after animation completes
+            setTimeout(() => {
+                flyingImg.remove();
+            }, 800);
+        }
+
+        // Add item to cart
+        function addToCart(itemId) {
+            const item = menuItems.find(item => item.id === itemId);
+            if (!item) return;
+
+            const existingItem = cartItems.find(cartItem => cartItem.id === itemId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1,
+                    image: item.image
+                });
+            }
+
+            updateCart();
+        }
+
+        // Remove item from cart
+        function removeFromCart(itemId) {
+            cartItems = cartItems.filter(item => item.id !== itemId);
+            updateCart();
+        }
+
+        // Update item quantity
+        function updateQuantity(itemId, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(itemId);
+                return;
+            }
+
+            const item = cartItems.find(item => item.id === itemId);
+            if (item) {
+                item.quantity = newQuantity;
+                updateCart();
+            }
+        }
+
+        // Update cart UI
+        function updateCart() {
+            // Update cart count
+            const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+
+            // Update cart content
+            renderCartContent();
+
+            // Save cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+
+        // Render cart content
+        function renderCartContent() {
+            if (cartItems.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="cart-empty">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"></circle>
+                            <circle cx="19" cy="21" r="1"></circle>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                        </svg>
+                        <p>Your cart is empty</p>
+                        <button class="continue-shopping-btn" id="continue-shopping">Continue Shopping</button>
+                    </div>
+                `;
+                
+                document.getElementById('continue-shopping').addEventListener('click', closeCart);
+                return;
+            }
+
+            let cartItemsHTML = '<div class="cart-items">';
+            
+            cartItems.forEach(item => {
+                cartItemsHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">${item.name}</h3>
+                            <p class="cart-item-price">₹${item.price.toFixed(2)} each</p>
+                            <div class="cart-item-controls">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn decrease-quantity" data-id="${item.id}">-</button>
+                                    <span class="quantity-value">${item.quantity}</span>
+                                    <button class="quantity-btn increase-quantity" data-id="${item.id}">+</button>
+                                </div>
+                                <button class="remove-btn" data-id="${item.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cart-item-total">₹${(item.price * item.quantity).toFixed(2)}</div>
+                    </div>
+                `;
+            });
+
+            cartItemsHTML += '</div>';
+
+            // Calculate total
+            const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartItemsHTML += `
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span>Total</span>
+                        <span>₹${total.toFixed(2)}</span>
+                    </div>
+                    <button class="checkout-btn" id="checkout-btn">Checkout</button>
+                    <button class="clear-cart-btn" id="clear-cart-btn">Clear Cart</button>
+                </div>
+            `;
+
+            cartContent.innerHTML = cartItemsHTML;
+
+            // Add event listeners to cart item controls
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    const item = cartItems.find(item => item.id === itemId);
+                    if (item) {
+                        updateQuantity(itemId, item.quantity - 1);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    const item = cartItems.find(item => item.id === itemId);
+                    if (item) {
+                        updateQuantity(itemId, item.quantity + 1);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(itemId);
+                });
+            });
+
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                // Show payment interface instead of alert
+                openPaymentInterface();
+            });
+
+            document.getElementById('clear-cart-btn').addEventListener('click', function() {
+                cartItems = [];
+                updateCart();
+            });
+        }
+
+        // Open cart
+        function openCart() {
+            cartOverlay.style.display = 'block';
+            setTimeout(() => {
+                cartContainer.classList.add('slide-in');
+            }, 10);
+        }
+
+        // Close cart
+        function closeCart() {
+            cartContainer.classList.remove('slide-in');
+            setTimeout(() => {
+                cartOverlay.style.display = 'none';
+            }, 300);
+        }
+
+        // Open payment interface
+        function openPaymentInterface() {
+            // Calculate total
+            const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Update payment amount
+            paymentTotalAmount.textContent = `₹${total.toFixed(2)}`;
+            
+            // Close cart
+            closeCart();
+            
+            // Show payment overlay
+            paymentOverlay.style.display = 'flex';
+            setTimeout(() => {
+                paymentOverlay.classList.add('active');
+            }, 10);
+            
+            // Start QR code timer
+            startQRTimer();
+        }
+
+        // Close payment interface
+        function closePaymentInterface() {
+            paymentOverlay.classList.remove('active');
+            setTimeout(() => {
+                paymentOverlay.style.display = 'none';
+            }, 300);
+        }
+
+        // Start QR code timer
+        function startQRTimer() {
+            let minutes = 5;
+            let seconds = 0;
+            
+            const timerInterval = setInterval(() => {
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        clearInterval(timerInterval);
+                        qrTimer.textContent = "Expired";
+                        return;
+                    }
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                
+                qrTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Payment tab switching
+        document.querySelectorAll('.payment-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.payment-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Hide all content
+                document.querySelectorAll('.payment-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show corresponding content
+                const tabId = this.dataset.tab;
+                document.getElementById(`${tabId}-content`).classList.add('active');
+                
+                // Update pay button text
+                if (tabId === 'cod') {
+                    payButtonText.textContent = 'Confirm Order';
+                } else {
+                    payButtonText.textContent = 'Pay Now';
+                }
+            });
+        });
+
+        // Payment option selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in the same group
+                const parentContent = this.closest('.payment-content');
+                parentContent.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+
+        // Pay button click
+        payButton.addEventListener('click', function() {
+            // Show loading state
+            this.disabled = true;
+            payButtonText.innerHTML = '<span class="loading-spinner"></span> Processing...';
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Show success message
+                const paymentBody = document.querySelector('.payment-body');
+                const paymentFooter = document.querySelector('.payment-footer');
+                const paymentHeader = document.querySelector('.payment-header');
+                
+                paymentHeader.innerHTML = `
+                    <h2>Payment Successful</h2>
+                    <p>Your order has been placed</p>
+                    <button class="payment-close" id="payment-success-close">×</button>
+                `;
+                
+                paymentBody.innerHTML = `
+                    <div class="payment-success">
+                        <div class="success-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="success-title">Thank You, Rajesh Kumar!</h3>
+                        <p class="success-message">Your order has been placed successfully.</p>
+                        <div class="success-details">
+                            <div class="success-detail">
+                                <span class="success-detail-label">Order Number:</span>
+                                <span class="success-detail-value">#AA${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</span>
+                            </div>
+                            <div class="success-detail">
+                                <span class="success-detail-label">Amount Paid:</span>
+                                <span class="success-detail-value">${paymentTotalAmount.textContent}</span>
+                            </div>
+                            <div class="success-detail">
+                                <span class="success-detail-label">Payment Method:</span>
+                                <span class="success-detail-value">UPI</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                paymentFooter.innerHTML = `
+                    <button class="pay-button success-button" id="continue-button">Continue Shopping</button>
+                `;
+                
+                // Add event listener to continue button
+                document.getElementById('continue-button').addEventListener('click', function() {
+                    closePaymentInterface();
+                    // Clear cart
+                    cartItems = [];
+                    updateCart();
+                });
+                
+                // Add event listener to close button
+                document.getElementById('payment-success-close').addEventListener('click', function() {
+                    closePaymentInterface();
+                    // Clear cart
+                    cartItems = [];
+                    updateCart();
+                });
+            }, 2000);
+        });
+
+        // Close payment interface
+        paymentClose.addEventListener('click', closePaymentInterface);
+
+        // Initialize
+        function init() {
+            // Load cart from localStorage
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                try {
+                    cartItems = JSON.parse(savedCart);
+                } catch (e) {
+                    console.error('Failed to parse cart from localStorage', e);
+                }
+            }
+
+            // Render menu tabs
+            renderMenuTabs();
+
+            // Render all menu items initially
+            renderMenuItems(menuItems);
+
+            // Update cart UI
+            updateCart();
+
+            // Event listeners
+            cartButton.addEventListener('click', openCart);
+            cartClose.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', function(e) {
+                if (e.target === cartOverlay) {
+                    closeCart();
+                }
+            });
+            
+            // Payment overlay click outside to close
+            paymentOverlay.addEventListener('click', function(e) {
+                if (e.target === paymentOverlay) {
+                    closePaymentInterface();
+                }
+            });
+        }
+
+        // Run initialization
+        init();
+    </script>
+</body>
+</html>
